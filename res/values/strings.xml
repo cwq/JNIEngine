@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">JNIEngine</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="cut">CutActivity</string>
+    <string name="animation">AnimationActivity</string>
+    <string name="svg">SVGActivity</string>
+
+</resources>
