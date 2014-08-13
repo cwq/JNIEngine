@@ -44,7 +44,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>E:\android\android-ndk-r9d\platforms\android-19\arch-x86\usr\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>E:\android\android-ndk-r9d\sources\cxx-stl\stlport;E:\android\android-ndk-r9d\platforms\android-19\arch-x86\usr\include;E:\android\android-ndk-r9d\sources\libpng;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
@@ -67,16 +67,21 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="ComOGLESProgram.h" />
+    <ClInclude Include="GraphicsTexture.h" />
     <ClInclude Include="Matrix.h" />
     <ClInclude Include="OpenglESHelper.h" />
     <ClInclude Include="OpenglESProgram.h" />
+    <ClInclude Include="Resource.h" />
+    <ClInclude Include="TextureManager.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ComOGLESProgram.cpp" />
+    <ClCompile Include="GraphicsTexture.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Matrix.cpp" />
     <ClCompile Include="OpenglESHelper.cpp" />
     <ClCompile Include="OpenglESProgram.cpp" />
+    <ClCompile Include="Resource.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="FragmentShader.glsl" />

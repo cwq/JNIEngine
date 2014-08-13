@@ -7,7 +7,6 @@ ComOGLESProgram::ComOGLESProgram()
 		OpenglESHelper::readShaderString(fragmentShaderString, fragmentShaderName);
 }
 
-
 ComOGLESProgram::~ComOGLESProgram() {
 	free(vertexShaderString);
 	free(fragmentShaderString);
@@ -23,8 +22,6 @@ void ComOGLESProgram::onSurfaceCreated() {
 		glAttachShader(program, vertexShader);
 		glAttachShader(program,fragmentShader);
 		glLinkProgram(program);
-		int linkStatus = GL_FALSE;
-		glGetProgramiv(program, GL_LINK_STATUS, &linkStatus);
 		GLint linkStatus = GL_FALSE;
 		glGetProgramiv(program, GL_LINK_STATUS, &linkStatus);
 		if (linkStatus != GL_TRUE) {
