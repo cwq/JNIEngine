@@ -52,3 +52,15 @@ void OpenglESHelper::readShaderString(char* &shaderString, const char* shaderNam
 		printf("Can not open file: %s\n", shaderName);
 	}
 }
+
+int OpenglESHelper::createTexture(AAssetManager* assetManager, const char* pPath) {
+	int texture = 0;
+	GraphicsTexture graphicsTexture(assetManager, pPath);
+	graphicsTexture.load();
+	texture = graphicsTexture.getTextureId();
+	return texture;
+}
+
+void OpenglESHelper::deleteTexture(int n, const GLuint* texturs) {
+	glDeleteTextures(n, texturs);
+}

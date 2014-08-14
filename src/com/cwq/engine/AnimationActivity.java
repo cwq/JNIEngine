@@ -1,4 +1,4 @@
-package com.cwq.engine;
+锘縫ackage com.cwq.engine;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,7 +44,7 @@ public class AnimationActivity extends Activity {
 		
 		init();
 		
-		//此处开始创建Button  
+		//姝ゅ寮�濮嬪垱寤築utton  
         LinearLayout ll = new LinearLayout(this);  
         ll.setOrientation(LinearLayout.VERTICAL);  
   

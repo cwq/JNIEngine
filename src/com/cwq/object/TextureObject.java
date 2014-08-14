@@ -1,8 +1,8 @@
-package com.cwq.object;
+﻿package com.cwq.object;
 
 import android.opengl.GLES20;
 import android.opengl.Matrix;
-import com.cwq.opengl.OpenglESProgram;
+import com.cwq.opengl.JNIOpenglESProgram;
 import com.cwq.opengl.TextureManager;
 
 public abstract class TextureObject extends BaseObject {
@@ -11,16 +11,14 @@ public abstract class TextureObject extends BaseObject {
 	
 	protected int textureID = 0;
 	
-	protected int bitmapID = NO_BITMAP;
+	protected String picture = null;
 	
-	protected static final int NO_BITMAP = -1;
-	
-	public void setBitmapID(int bitmapID) {
-		this.bitmapID = bitmapID;
+	public void setpicture(int picture) {
+		this.picture = picture;
 	}
 	
-	public int getBitmapID() {
-		return bitmapID;
+	public int getpicture() {
+		return picture;
 	}
 
 	public void setTextureID(int texture) {
@@ -30,13 +28,13 @@ public abstract class TextureObject extends BaseObject {
 	@Override
 	public void addTextureToManager() {
 		// TODO Auto-generated method stub
-		if (bitmapID != NO_BITMAP) {
-			TextureManager.addTexture(bitmapID);
+		if (picture != NO_BITMAP) {
+			TextureManager.addTexture(picture);
 		}
 	}
 
 	@Override
-	public void draw(OpenglESProgram openglESProgram, double sElapsed) {
+	public void draw(JNIOpenglESProgram openglESProgram, double sElapsed) {
 		// TODO Auto-generated method stub
 		doAnimation(sElapsed);
 		
@@ -67,7 +65,7 @@ public abstract class TextureObject extends BaseObject {
 		GLES20.glUniformMatrix4fv(openglESProgram.getChangeMatrixLocation(), 1, false, complexMatrix, 0);
 		
 		Matrix.multiplyMM(finalMatrix, 0, openglESProgram.getmMVPMatrix(), 0, complexMatrix, 0);
-		// Ӧ��ͶӰ���ӿڱ任
+		// 应用投影和视口变换
 		GLES20.glUniformMatrix4fv(openglESProgram.getMatrixLocation(), 1, false, finalMatrix, 0);
 		
 		//Set the active texture unit to texture unit 0.

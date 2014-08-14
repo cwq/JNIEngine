@@ -1,4 +1,4 @@
-package com.cwq.object.svg;
+﻿package com.cwq.object.svg;
 
 import com.cwq.object.MultiObject;
 

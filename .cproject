@@ -29,8 +29,21 @@
 								</outputEntries>
 							</builder>
 							<tool id="com.android.gcc.compiler.499194393" name="Android GCC Compiler" superClass="com.android.gcc.compiler">
-								<option id="com.android.gcc.option.includePath.1422739218" superClass="com.android.gcc.option.includePath" valueType="includePath"/>
+								<option id="com.android.gcc.option.includePath.1422739218" superClass="com.android.gcc.option.includePath" valueType="includePath">
+									<listOptionValue builtIn="false" value="&quot;E:\android\android-ndk-r9d\sources\cxx-stl\stlport\stlport&quot;"/>
+								</option>
 								<inputType id="com.android.gcc.inputType.1842356335" superClass="com.android.gcc.inputType"/>
+							</tool>
+						</toolChain>
+					</folderInfo>
+					<folderInfo id="com.android.toolchain.gcc.699815999.731663500" name="/" resourcePath="jni">
+						<toolChain id="com.android.toolchain.gcc.508001519" name="com.android.toolchain.gcc" superClass="com.android.toolchain.gcc" unusedChildren="">
+							<targetPlatform binaryParser="org.eclipse.cdt.core.ELF" id="com.android.targetPlatform" isAbstract="false" superClass="com.android.targetPlatform"/>
+							<tool id="com.android.gcc.compiler.266988958" name="Android GCC Compiler" superClass="com.android.gcc.compiler.499194393">
+								<option id="com.android.gcc.option.includePath.352288856" superClass="com.android.gcc.option.includePath" valueType="includePath">
+									<listOptionValue builtIn="false" value="&quot;E:\android\android-ndk-r9d\sources\cxx-stl\stlport\stlport&quot;"/>
+								</option>
+								<inputType id="com.android.gcc.inputType.493478538" superClass="com.android.gcc.inputType"/>
 							</tool>
 						</toolChain>
 					</folderInfo>
@@ -45,9 +58,15 @@
 	<storageModule moduleId="cdtBuildSystem" version="4.0.0">
 		<project id="JNIEngine.null.1968836094" name="JNIEngine"/>
 	</storageModule>
+	<storageModule moduleId="refreshScope" versionNumber="1">
+		<resource resourceType="PROJECT" workspacePath="/JNIEngine"/>
+	</storageModule>
 	<storageModule moduleId="scannerConfiguration">
 		<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
 		<scannerConfigBuildInfo instanceId="com.android.toolchain.gcc.699815999;com.android.toolchain.gcc.699815999.1023315064;com.android.gcc.compiler.499194393;com.android.gcc.inputType.1842356335">
+			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId="com.android.AndroidPerProjectProfile"/>
+		</scannerConfigBuildInfo>
+		<scannerConfigBuildInfo instanceId="com.android.toolchain.gcc.699815999;com.android.toolchain.gcc.699815999.731663500;com.android.gcc.compiler.266988958;com.android.gcc.inputType.493478538">
 			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId="com.android.AndroidPerProjectProfile"/>
 		</scannerConfigBuildInfo>
 	</storageModule>

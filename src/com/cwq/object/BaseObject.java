@@ -1,17 +1,11 @@
-package com.cwq.object;
-
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
-import java.nio.FloatBuffer;
+ï»¿package com.cwq.object;
 
 import android.opengl.Matrix;
 import com.cwq.animation.AnimationRunner;
 import com.cwq.animation.BaseAnimation;
-import com.cwq.opengl.OpenglESProgram;
 
 public abstract class BaseObject {
-	
-	protected FloatBuffer glBuffer;
+
 	protected float[] attribute;
 	
 	protected static final int FLOAT_BYTE = 4;
@@ -23,12 +17,12 @@ public abstract class BaseObject {
 	protected float[] color = {0.0f, 0.0f, 0.0f, 0.0f};
 	protected float alpha = 1;
 	/**
-	 * alpha×÷ÓÃÇøÓòcenterx, centery, halfW, halfH, Ïà¶ÔÓÚÍ¼ĞÎÖĞĞÄ,Î´³Ë±ä»¯¾ØÕóÇ°
+	 * alphaä½œç”¨åŒºåŸŸcenterx, centery, halfW, halfH, ç›¸å¯¹äºå›¾å½¢ä¸­å¿ƒ,æœªä¹˜å˜åŒ–çŸ©é˜µå‰
 	 */
 	protected float[] inVec4 = {0, 0, 1, 1};
 	
 	/**
-	 * Í¼ĞÎÏÔÊ¾ÇøÓòcenterx, centery, halfW, halfH, ³Ë±ä»¯¾ØÕóºó,ÆÁÄ»×ø±ê
+	 * å›¾å½¢æ˜¾ç¤ºåŒºåŸŸcenterx, centery, halfW, halfH, ä¹˜å˜åŒ–çŸ©é˜µå,å±å¹•åæ ‡
 	 */
 	protected float[] showVec4 = {0, 0, 10, 10};
 	
@@ -50,7 +44,7 @@ public abstract class BaseObject {
 	}
 
 	/**
-	 * Í¼ĞÎÖĞĞÄ×÷Îª×ø±êÔ­µã
+	 * å›¾å½¢ä¸­å¿ƒä½œä¸ºåæ ‡åŸç‚¹
 	 */
 	public void setInVec4(float centerX, float centerY, float halfW, float halfH) {
 		inVec4[0] = centerX;
@@ -156,16 +150,6 @@ public abstract class BaseObject {
 		Matrix.scaleM(mscaleMatrix, 0, scaleX, scaleY, 1);
 	}
 	
-	protected void setGLBuffer() {
-		if (glBuffer == null) {
-			glBuffer = ByteBuffer.allocateDirect(attribute.length * FLOAT_BYTE)
-					.order(ByteOrder.nativeOrder()).asFloatBuffer();
-		} else {
-			glBuffer.clear();
-		}
-		glBuffer.put(attribute);
-	}
-	
 	public boolean isRunAnimation() {
 		return animationRunner != null && animationRunner.isRun();
 	}
@@ -182,7 +166,7 @@ public abstract class BaseObject {
 		}
 	}
 	
-	public abstract void draw(OpenglESProgram openglESProgram, double sElapsed);
+	public abstract void draw(double sElapsed);
 	
 	public abstract boolean isInObject(float x, float y);
 	

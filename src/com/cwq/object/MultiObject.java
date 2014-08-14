@@ -1,9 +1,7 @@
-package com.cwq.object;
+﻿package com.cwq.object;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import com.cwq.opengl.OpenglESProgram;
 
 public class MultiObject extends BaseObject {
 	
@@ -92,11 +90,11 @@ public class MultiObject extends BaseObject {
 	}
 
 	@Override
-	public void draw(OpenglESProgram openglESProgram, double sElapsed) {
+	public void draw(double sElapsed) {
 		// TODO Auto-generated method stub
 		doAnimation(sElapsed);
 		for (BaseObject object : objects) {
-			object.draw(openglESProgram, sElapsed);
+			object.draw(sElapsed);
 		}
 	}
 

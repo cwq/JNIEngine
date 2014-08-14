@@ -1,8 +1,8 @@
-package com.cwq.object;
+﻿package com.cwq.object;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import com.cwq.opengl.OpenglESProgram;
+import com.cwq.opengl.JNIOpenglESProgram;
 import com.cwq.opengl.TextureManager;
 import com.cwq.scene.Scene;
 
@@ -61,7 +61,6 @@ public class RectangleTexture extends TextureObject {
 		this.endV = endV;
 		this.bitmapID = bitmapID;
 		setAttribute(centerX, centerY, w, h, startU, startV, endU, endV);
-		setGLBuffer();
 	}
 	
 	private void setAttribute(float centerX, float centerY, float w, float h,
@@ -82,7 +81,7 @@ public class RectangleTexture extends TextureObject {
 	}
 
 	@Override
-	public void draw(OpenglESProgram openglESProgram, double sElapsed) {
+	public void draw(JNIOpenglESProgram openglESProgram, double sElapsed) {
 		// TODO Auto-generated method stub
 		if (bitmapID != NO_BITMAP) {
 			setTextureID(TextureManager.getTextureID(bitmapID));

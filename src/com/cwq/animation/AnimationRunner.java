@@ -1,4 +1,4 @@
-package com.cwq.animation;
+锘縫ackage com.cwq.animation;
 
 import com.cwq.object.BaseObject;
 
@@ -22,7 +22,7 @@ public class AnimationRunner {
 				isRun = false;
 				totalSElapsed = animation.getsDuration();
 				if (animation.isRevert()) {
-					//还原到动画前
+					//杩樺師鍒板姩鐢诲墠
 					animation.revert(object);
 					return;
 				}

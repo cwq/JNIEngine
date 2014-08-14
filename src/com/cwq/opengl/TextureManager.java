@@ -1,4 +1,4 @@
-package com.cwq.opengl;
+ï»¿package com.cwq.opengl;
 
 import java.util.HashMap;
 import java.util.Iterator;
@@ -6,20 +6,21 @@ import java.util.Map.Entry;
 
 import com.cwq.engine.CutActivity;
 
-import android.opengl.GLES20;
 import android.util.Log;
 
 public class TextureManager {
 	
-	private static HashMap<Integer, Integer> textures = new HashMap<Integer, Integer>();
+	private static boolean isClear = false;
 	
-	public static synchronized void addTexture(int bitmapID) {
+	private static HashMap<String, Integer> textures = new HashMap<String, Integer>();
+	
+	public static synchronized void addTexture(String bitmapID) {
 		if (!textures.containsKey(bitmapID)) {
 			textures.put(bitmapID, -1);
 		}
 	}
 	
-	public static int getTextureID(int bitmapID) {
+	public static synchronized int getTextureID(String bitmapID) {
 		Integer texture = textures.get(bitmapID);
 		if (texture == null) {
 			texture = 0;
@@ -28,15 +29,16 @@ public class TextureManager {
 	}
 	
 	/**
-	 * ¼ÓÔØ»¹Î´¼ÓÔØµÄÎÆÀí
+	 * åŠ è½½è¿˜æœªåŠ è½½çš„çº¹ç†
 	 */
 	public static synchronized void loadTextures() {
-		Iterator<Entry<Integer, Integer>> iterator = textures.entrySet().iterator();
+		clearTecture();
+		Iterator<Entry<String, Integer>> iterator = textures.entrySet().iterator();
 		while (iterator.hasNext()) {
-			Entry<Integer, Integer> entry = iterator.next();
+			Entry<String, Integer> entry = iterator.next();
 			if (entry.getValue() == -1) {
 				try {
-					textures.put(entry.getKey(), OpenglESHelper.createTexture(entry.getKey()));
+					textures.put(entry.getKey(), JNIOpenglESHelper.createTexture(entry.getKey()));
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -46,14 +48,15 @@ public class TextureManager {
 	}
 	
 	/**
-	 * ÖØĞÂ¼ÓÔØËùÓĞÎÆÀí
+	 * é‡æ–°åŠ è½½æ‰€æœ‰çº¹ç†
 	 */
 	public static synchronized void reloadTextures() {
-		Iterator<Entry<Integer, Integer>> iterator = textures.entrySet().iterator();
+		clearTecture();
+		Iterator<Entry<String, Integer>> iterator = textures.entrySet().iterator();
 		while (iterator.hasNext()) {
-			Entry<Integer, Integer> entry = iterator.next();
+			Entry<String, Integer> entry = iterator.next();
 			try {
-				textures.put(entry.getKey(), OpenglESHelper.createTexture(entry.getKey()));
+				textures.put(entry.getKey(), JNIOpenglESHelper.createTexture(entry.getKey()));
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -61,22 +64,33 @@ public class TextureManager {
 		}
 	}
 	
-	public static synchronized void clearTecture() {
-		Iterator<Entry<Integer, Integer>> iterator = textures.entrySet().iterator();
-		int[] texs = new int[textures.size()];
-		int num = 0;
-		int texture = 0;
-		while (iterator.hasNext()) {
-			Entry<Integer, Integer> entry = iterator.next();
-			texture = entry.getKey();
-			if (texture != 0) {
-				texs[num] = texture;
-				num++;
+	private static synchronized void clearTecture() {
+		if (isClear) {
+			Iterator<Entry<String, Integer>> iterator = textures.entrySet().iterator();
+			int[] texs = new int[textures.size()];
+			int num = 0;
+			int texture = 0;
+			while (iterator.hasNext()) {
+				Entry<String, Integer> entry = iterator.next();
+				texture = entry.getValue();
+				if (texture != 0) {
+					texs[num] = texture;
+					num++;
+				}
 			}
+			Log.v(CutActivity.TAG, "clear " + num);
+			JNIOpenglESHelper.deleteTextures(num, texs);
+			textures.clear();
+			isClear = false;
 		}
-		Log.v(CutActivity.TAG, "clear " + num);
-		GLES20.glDeleteTextures(num, texs, 0);
-		textures.clear();
+	}
+
+	public static boolean isClear() {
+		return isClear;
+	}
+
+	public static void setClear(boolean isClear) {
+		TextureManager.isClear = isClear;
 	}
 
 }

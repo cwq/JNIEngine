@@ -1,9 +1,9 @@
-package com.cwq.object;
+﻿package com.cwq.object;
 
 import android.opengl.GLES20;
 import android.opengl.Matrix;
 
-import com.cwq.opengl.OpenglESProgram;
+import com.cwq.opengl.JNIOpenglESProgram;
 
 public abstract class GraphObject extends BaseObject {
 
@@ -20,7 +20,7 @@ public abstract class GraphObject extends BaseObject {
 		setInVec4(0, 0, 0, 0);
 	}
 	
-	protected void draw(OpenglESProgram openglESProgram, double sElapsed, int mode) {
+	protected void draw(double sElapsed, int mode) {
 		doAnimation(sElapsed);
 		
 		GLES20.glUseProgram(openglESProgram.getProgram());
@@ -52,7 +52,7 @@ public abstract class GraphObject extends BaseObject {
 		GLES20.glUniformMatrix4fv(openglESProgram.getChangeMatrixLocation(), 1, false, complexMatrix, 0);
 		
 		Matrix.multiplyMM(finalMatrix, 0, openglESProgram.getmMVPMatrix(), 0, complexMatrix, 0);
-		// Ӧ��ͶӰ���ӿڱ任
+		// 应用投影和视口变换
 		GLES20.glUniformMatrix4fv(openglESProgram.getMatrixLocation(), 1, false, finalMatrix, 0);
 		
 		//Set the active texture unit to texture unit 0.

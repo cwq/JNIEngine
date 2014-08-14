@@ -1,4 +1,4 @@
-package com.cwq.object;
+﻿package com.cwq.object;
 
 import android.graphics.PointF;
 
@@ -36,7 +36,6 @@ public class Triangle extends Polygon {
 		attribute[7] = end3.y - centerY;
 		attribute[8] = 0;
 		moveTo(centerX, centerY);
-		setGLBuffer();
 	}
 
 	@Override

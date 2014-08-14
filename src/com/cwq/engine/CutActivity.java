@@ -1,4 +1,4 @@
-package com.cwq.engine;
+锘縫ackage com.cwq.engine;
 
 import com.cwq.cut.CutRectangle;
 import com.cwq.object.RectangleTexture;
@@ -69,7 +69,7 @@ public class CutActivity extends Activity {
 		});
 		setContentView(myScene);
 		
-		//此处开始创建Button  
+		//姝ゅ寮�濮嬪垱寤築utton  
         LinearLayout ll = new LinearLayout(this);  
         ll.setOrientation(LinearLayout.HORIZONTAL);  
 

@@ -2,6 +2,8 @@
 #define OPENGLESPROGRAM_H
 
 #include "OpenglESHelper.h"
+#include "glm/glm.hpp"
+#include "glm/gtc/matrix_transform.hpp"
 
 class OpenglESProgram
 {
@@ -20,9 +22,9 @@ protected:
 	int showVec4Location;
 	int changeMatrixLocation;
 
-	float mProjMatrix[16]; //投影矩阵
-	float mVMatrix[16]; //视图矩阵
-	float mMVPMatrix[16]; //复合变化矩阵
+	glm::mat4 mProjMatrix; //投影矩阵
+	glm::mat4 mVMatrix; //视图矩阵
+	glm::mat4 mMVPMatrix; //复合变化矩阵
 
 	static const char* vertexString;
 	static const char* matrixString;
@@ -76,13 +78,13 @@ public:
 	inline int getChangeMatrixLocation() {
 		return changeMatrixLocation;
 	}
-	inline float* getmProjMatrix() {
+	inline glm::mat4 getmProjMatrix() {
 		return mProjMatrix;
 	}
-	inline float* getmVMatrix() {
+	inline glm::mat4 getmVMatrix() {
 		return mVMatrix;
 	}
-	inline float* getmMVPMatrix() {
+	inline glm::mat4 getmMVPMatrix() {
 		return mMVPMatrix;
 	}
 };

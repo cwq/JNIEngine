@@ -1,7 +1,6 @@
-package com.cwq.object;
+﻿package com.cwq.object;
 
 import android.opengl.GLES20;
-import com.cwq.opengl.OpenglESProgram;
 
 public class Point extends GraphObject {
 	
@@ -21,13 +20,12 @@ public class Point extends GraphObject {
 		attribute[1] = 0;
 		attribute[2] = 0;
 		moveTo(x, y);
-		setGLBuffer();
 	}
 
 	@Override
-	public void draw(OpenglESProgram openglESProgram, double sElapsed) {
+	public void draw(double sElapsed) {
 		// TODO Auto-generated method stub
-		super.draw(openglESProgram, sElapsed, GLES20.GL_POINTS);
+		super.draw(sElapsed, GLES20.GL_POINTS);
 	}
 
 	@Override

@@ -1,8 +1,6 @@
-package com.cwq.object;
+﻿package com.cwq.object;
 
 import android.opengl.GLES20;
-
-import com.cwq.opengl.OpenglESProgram;
 
 public abstract class Polygon extends GraphObject {
 	
@@ -17,12 +15,12 @@ public abstract class Polygon extends GraphObject {
 	}
 
 	@Override
-	public void draw(OpenglESProgram openglESProgram, double sElapsed) {
+	public void draw(double sElapsed) {
 		// TODO Auto-generated method stub
 		if (isEmpty) {
-			super.draw(openglESProgram, sElapsed, GLES20.GL_LINE_LOOP);
+			super.draw(sElapsed, GLES20.GL_LINE_LOOP);
 		} else {
-			super.draw(openglESProgram, sElapsed, GLES20.GL_TRIANGLES);
+			super.draw(sElapsed, GLES20.GL_TRIANGLES);
 		}
 	}
 

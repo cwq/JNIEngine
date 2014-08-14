@@ -1,4 +1,4 @@
-package com.cwq.animation;
+﻿package com.cwq.animation;
 
 import com.cwq.object.BaseObject;
 

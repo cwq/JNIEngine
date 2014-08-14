@@ -1,4 +1,4 @@
-package com.cwq.animation;
+ï»¿package com.cwq.animation;
 
 import com.cwq.object.BaseObject;
 
@@ -77,14 +77,14 @@ public class MoveAnimation extends BaseAnimation {
 //				float ax, bx, cx; float ay, by, cy; 
 //				float tSquared, tCubed;
 //				float t = i * dt;
-//				/* ¼ÆËã¶àÏîÊ½ÏµÊı */ 
+//				/* è®¡ç®—å¤šé¡¹å¼ç³»æ•° */ 
 //				cx = (float) (3.0 * (c1.x - start.x)); 
 //				bx = (float) (3.0 * (c2.x - c1.x) - cx); 
 //				ax = end.x - start.x - cx - bx; 
 //				cy = (float) (3.0 * (c1.y - start.y)); 
 //				by = (float) (3.0 * (c2.y - c1.y) - cy); 
 //				ay = end.y - start.y - cy - by; 
-//				/* ¼ÆËãtÎ»ÖÃµÄµãÖµ */ 
+//				/* è®¡ç®—tä½ç½®çš„ç‚¹å€¼ */ 
 //				tSquared = t * t; 
 //				tCubed = tSquared * t; 
 //				pointF.x = (ax * tCubed) + (bx * tSquared) + (cx * t) + start.x; 

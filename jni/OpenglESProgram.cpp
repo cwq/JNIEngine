@@ -20,9 +20,8 @@ OpenglESProgram::OpenglESProgram() {
 	bgColor[G_INDEX] = 0.8f;
 	bgColor[B_INDEX] = 0.8f;
 	bgColor[A_INDEX] = 0.0f;
-	Matrix::setLookAtM(mVMatrix, 0, 0, 0, 0.1f, 0, 0, 0, 0, 1, 0);
+	mVMatrix = glm::lookAt(glm::vec3(0, 0, 0.1f), glm::vec3(0, 0, 0), glm::vec3(0, 1, 0));
 }
-
 
 OpenglESProgram::~OpenglESProgram() {
 	
@@ -44,8 +43,8 @@ void OpenglESProgram::onSurfaceChanged(int width, int height) {
 	} else {
 		halfH = aspectRatio;
 	}
-	Matrix::orthoM(mProjMatrix, 0, -halfW, halfW, -halfH, halfH, -1, 1);
-	Matrix::multiplyMM(mMVPMatrix, 0, mProjMatrix, 0, mVMatrix, 0);
+	mProjMatrix = glm::ortho( -halfW, halfW, -halfH, halfH, -1.0f, 1.0f);
+	mMVPMatrix = mProjMatrix * mVMatrix;
 }
 
 void OpenglESProgram::onDrawFrame() {

@@ -1,4 +1,4 @@
-package com.cwq.object;
+﻿package com.cwq.object;
 
 public class Rectangle extends Polygon {
 	
@@ -37,7 +37,6 @@ public class Rectangle extends Polygon {
 		};
 		attribute = attrib;
 		moveTo(centerX, centerY);
-		setGLBuffer();
 	}
 
 	public float getHalfW() {

@@ -7,6 +7,10 @@ GraphicsTexture::GraphicsTexture(AAssetManager* assetManager, const char* pPath)
 
 }
 
+GraphicsTexture::~GraphicsTexture() {
+
+}
+
 int32_t GraphicsTexture::getHeight() {
 	return mHeight;
 }
@@ -151,8 +155,5 @@ void GraphicsTexture::unload() {
 }
 
 GLuint GraphicsTexture::getTextureId() {
-	if (mTextureId == 0) {
-		load();
-	}
 	return mTextureId;
 }

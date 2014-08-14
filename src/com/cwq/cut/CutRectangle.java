@@ -1,4 +1,4 @@
-package com.cwq.cut;
+ï»¿package com.cwq.cut;
 
 import android.graphics.PointF;
 import com.cwq.animation.BaseAnimation;
@@ -70,7 +70,7 @@ public class CutRectangle extends MultiObject {
 	 * 
 	 * @param backRectTexture
 	 * @param upLayer
-	 * @param isFull ²Ã¼ô¿òÊÇ·ñÕ¼Âú±³¾°
+	 * @param isFull è£å‰ªæ¡†æ˜¯å¦å æ»¡èƒŒæ™¯
 	 */
 	public void setBackRect(RectangleTexture backRectTexture, RectangleTexture upLayer, boolean isFull) {
 		this.upLayer = upLayer;
@@ -111,7 +111,7 @@ public class CutRectangle extends MultiObject {
 	}
 	
 	public void doCutAnimation(Scene myScene, RectangleTexture tempTexture, RectangleTexture finalTexture) {
-		//²Ã¼ôµÄĞ¡Í¼À­Éì¶¯»­
+		//è£å‰ªçš„å°å›¾æ‹‰ä¼¸åŠ¨ç”»
 		ComplexAnimation changeAnimation = new ComplexAnimation(ANIMATION_TIME);
     	changeAnimation.addAnimation(MoveAnimation.moveTo(ANIMATION_TIME, 
     			new PointF(tempTexture.getCenterX(), tempTexture.getCenterY()), new PointF(0, 0)));
@@ -121,18 +121,18 @@ public class CutRectangle extends MultiObject {
     	changeAnimation.addAnimation(scale);
     	tempTexture.setAnimation(changeAnimation);
     	
-//    	//±³¾°µ­³ö
+//    	//èƒŒæ™¯æ·¡å‡º
 //    	backRectTexture.setAnimation(FadeAnimation.fade(ANIMATION_TIME, 1, 0));
 //    	upLayer.setInVec4(0, 0, HALF_W_BACK, HALF_H_BACK);
 //    	upLayer.setAnimation(FadeAnimation.fade(ANIMATION_TIME, 0.5f, 0));
     	
-    	//ÉèÖÃÏÔÊ¾·¶Î§£¬Ê¹·Å´óÔÚÒ»¶¨·¶Î§ÄÚ
+    	//è®¾ç½®æ˜¾ç¤ºèŒƒå›´ï¼Œä½¿æ”¾å¤§åœ¨ä¸€å®šèŒƒå›´å†…
     	float halfW = backRectTexture.getHalfW() > finalTexture.getHalfW() ? backRectTexture.getHalfW() : finalTexture.getHalfW();
 		float halfH = backRectTexture.getHalfH() > finalTexture.getHalfH() ? backRectTexture.getHalfH() : finalTexture.getHalfH();
 		backRectTexture.setShowVec4(0, 0, halfW, halfH);
 		upLayer.setShowVec4(0, 0, halfW, halfH);
 		
-		//±³¾°Í¼ºÍÃÉ²ãÀ­Éì¶¯»­
+		//èƒŒæ™¯å›¾å’Œè’™å±‚æ‹‰ä¼¸åŠ¨ç”»
     	ComplexAnimation back = new ComplexAnimation(ANIMATION_TIME);
     	back.addAnimation(MoveAnimation.moveTo(ANIMATION_TIME, new PointF(0, 0),
     			new PointF(-tempTexture.getCenterX() * scaleX, -tempTexture.getCenterY()*scaleY)));
@@ -141,7 +141,7 @@ public class CutRectangle extends MultiObject {
     	upLayer.setInVec4(0, 0, 0, 0);
     	upLayer.setAnimation(back);
     	
-    	//²Ã¼ô¿ò¶¥µãÒÆ¶¯¶¯»­
+    	//è£å‰ªæ¡†é¡¶ç‚¹ç§»åŠ¨åŠ¨ç”»
     	topLeft.setAnimation(MoveAnimation.moveTo(ANIMATION_TIME, 
     			new PointF(topLeft.getCenterX(), topLeft.getCenterY()),
     			new PointF(-finalTexture.getHalfW(), finalTexture.getHalfH())));
@@ -158,13 +158,13 @@ public class CutRectangle extends MultiObject {
     		
     	}
     	
-//    	//ÏÔÊ¾·¶Î§ÉèÖÃ»Ø
+//    	//æ˜¾ç¤ºèŒƒå›´è®¾ç½®å›
 //    	backRectTexture.setShowVec4(0, 0, 10, 10);
 //		upLayer.setShowVec4(0, 0, 10, 10);
 	}
 	
 	/**
-	 * »ñÈ¡²Ã¼ôºóµÄÔ­Ê¼Î»ÖÃRectangleTexture
+	 * è·å–è£å‰ªåçš„åŸå§‹ä½ç½®RectangleTexture
 	 * @return
 	 */
 	public RectangleTexture getCutTempTexture() {
@@ -174,7 +174,7 @@ public class CutRectangle extends MultiObject {
 	}
 	
 	/**
-	 * »ñÈ¡²Ã¼ôºó×îÖÕÓ¦¸ÃÏÔÊ¾µÄRectangleTexture
+	 * è·å–è£å‰ªåæœ€ç»ˆåº”è¯¥æ˜¾ç¤ºçš„RectangleTexture
 	 * @return
 	 */
 	public RectangleTexture getCutFinalTexture() {
@@ -230,7 +230,7 @@ public class CutRectangle extends MultiObject {
 			float x = lastCenterX + dx;
 			float y = lastCenterY + dy;
 			if (select == this) {
-				//4¸öµã¶¼ÒªÔÚ·¶Î§ÄÚ  ¼´  ÖĞĞÄÔÚ ±³¾°¿Û³ı²Ã¼ô¿ò µÄ·¶Î§ÄÚ
+				//4ä¸ªç‚¹éƒ½è¦åœ¨èŒƒå›´å†…  å³  ä¸­å¿ƒåœ¨ èƒŒæ™¯æ‰£é™¤è£å‰ªæ¡† çš„èŒƒå›´å†…
 				if (x < -HALF_W_BACK + halfWCut) {
 					x = -HALF_W_BACK + halfWCut;
 				} else {

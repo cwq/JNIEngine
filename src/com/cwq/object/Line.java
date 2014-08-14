@@ -1,9 +1,7 @@
-package com.cwq.object;
+﻿package com.cwq.object;
 
 import android.graphics.PointF;
 import android.opengl.GLES20;
-
-import com.cwq.opengl.OpenglESProgram;
 
 public class Line extends GraphObject {
 	
@@ -33,7 +31,6 @@ public class Line extends GraphObject {
 		attribute[4] = end.y - centerY;
 		attribute[5] = 0;
 		moveTo(centerX, centerY);
-		setGLBuffer();
 	}
 
 //	public PointF getStart() {
@@ -59,9 +56,9 @@ public class Line extends GraphObject {
 //	}
 
 	@Override
-	public void draw(OpenglESProgram openglESProgram, double sElapsed) {
+	public void draw(double sElapsed) {
 		// TODO Auto-generated method stub
-		super.draw(openglESProgram, sElapsed, GLES20.GL_LINES);
+		super.draw(sElapsed, GLES20.GL_LINES);
 	}
 
 	@Override

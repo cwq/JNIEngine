@@ -1,4 +1,4 @@
-package com.cwq.scene;
+Ôªøpackage com.cwq.scene;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,8 +9,7 @@ import javax.microedition.khronos.opengles.GL10;
 import com.cwq.engine.CutActivity;
 import com.cwq.engine.AnimationActivity;
 import com.cwq.object.BaseObject;
-import com.cwq.opengl.ComOGLESProgram;
-import com.cwq.opengl.OpenglESProgram;
+import com.cwq.opengl.JNIOpenglESProgram;
 import com.cwq.opengl.TextureManager;
 
 import android.content.Context;
@@ -34,11 +33,11 @@ public class Scene extends GLSurfaceView {
 	public static Context getMContext() {
 		return mContext;
 	}
-	private OpenglESProgram openglESProgram;
-	//∞¥’’zOrder¥”–°µΩ¥Û ‘Ω¥Ûœ‘ æ‘Ω«∞
+
+	//ÊåâÁÖßzOrder‰ªéÂ∞èÂà∞Â§ß Ë∂äÂ§ßÊòæÁ§∫Ë∂äÂâç
 	private List<BaseObject> objects;
 
-	private float[] bgColor = {0.8f, 0.8f, 0.8f, 0.0f};   //a=0 Õ∏√˜£¨ a=1 ≤ªÕ∏√˜
+	private float[] bgColor = {0.8f, 0.8f, 0.8f, 0.0f};   //a=0 ÈÄèÊòéÔºå a=1 ‰∏çÈÄèÊòé
 
 	public Scene(Context context) {
 		super(context);
@@ -70,8 +69,8 @@ public class Scene extends GLSurfaceView {
 		public void onSurfaceCreated(GL10 gl, EGLConfig config) {
 			// TODO Auto-generated method stub
 			Log.v(CutActivity.TAG, "onSurfaceCreated");
-			GLES20.glClearColor(bgColor[R_INDEX], bgColor[G_INDEX], bgColor[B_INDEX], bgColor[A_INDEX]);
-			openglESProgram = new ComOGLESProgram();
+			
+			JNIOpenglESProgram.onSurfaceCreated();
 			
 			TextureManager.reloadTextures();
 			
@@ -80,10 +79,9 @@ public class Scene extends GLSurfaceView {
 
 		@Override
 		public void onSurfaceChanged(GL10 gl, int width, int height) {
-			//‘⁄onSurfaceCreated ÷Æ∫Û
+			//Âú®onSurfaceCreated ‰πãÂêé
 			// TODO Auto-generated method stub
 			Log.v(CutActivity.TAG, "onSurfaceChanged");
-			GLES20.glViewport(0, 0, width, height);
 			final float aspectRatio = width > height ?
 					(float) width / (float) height :
 					(float) height / (float) width;
@@ -94,7 +92,7 @@ public class Scene extends GLSurfaceView {
 				HALF_W =1;
 				HALF_H = aspectRatio;
 			}
-			openglESProgram.onSurfaceChanged(HALF_W, HALF_H);
+			JNIOpenglESProgram.onSurfaceChanged(width, height);
 		}
 
 		@Override
@@ -102,13 +100,13 @@ public class Scene extends GLSurfaceView {
 			// TODO Auto-generated method stub
 			long curTime = System.nanoTime();
 			
-			GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT);
+			JNIOpenglESProgram.onDrawFrame();
 			
 			TextureManager.loadTextures();
 			
 			synchronized (objects) {
 				for (BaseObject obj : objects) {
-					obj.draw(openglESProgram, (curTime - lastTime) / NANO_SECOND);
+					obj.draw((curTime - lastTime) / NANO_SECOND);
 				}
 			}
 			lastTime = curTime;
@@ -175,7 +173,7 @@ public class Scene extends GLSurfaceView {
 		synchronized (objects) {
 			objects.clear();
 		}
-		TextureManager.clearTecture();
+		TextureManager.setClear(true);
 	}
 
 }
