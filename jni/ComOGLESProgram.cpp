@@ -1,10 +1,16 @@
 #include "ComOGLESProgram.h"
+#include "LogHelper.h"
+
+//  /sdcard/JNIEngine/VertexShader.glsl
+//  /sdcard/JNIEngine/FragmentShader.glsl
 
 ComOGLESProgram::ComOGLESProgram()
 	: vertexShaderName("VertexShader.glsl"),
 	fragmentShaderName("FragmentShader.glsl") {
 		OpenglESHelper::readShaderString(vertexShaderString, vertexShaderName);
 		OpenglESHelper::readShaderString(fragmentShaderString, fragmentShaderName);
+		LOGI("%s", vertexShaderString);
+		LOGI("%s", fragmentShaderString);
 }
 
 ComOGLESProgram::~ComOGLESProgram() {
@@ -15,8 +21,11 @@ ComOGLESProgram::~ComOGLESProgram() {
 void ComOGLESProgram::onSurfaceCreated() {
 	OpenglESProgram::onSurfaceCreated();
 	int vertexShader = OpenglESHelper::loadShader(GL_VERTEX_SHADER, vertexShaderString);
+	LOGI(" %i onSurfaceCreated", 2);
 	int fragmentShader = OpenglESHelper::loadShader(GL_FRAGMENT_SHADER, fragmentShaderString);
+	LOGI(" %i onSurfaceCreated", 3);
 	program = OpenglESHelper::createProgram();
+	LOGI(" %i program", program);
 	if (program != 0) {
 		//
 		glAttachShader(program, vertexShader);
@@ -24,6 +33,7 @@ void ComOGLESProgram::onSurfaceCreated() {
 		glLinkProgram(program);
 		GLint linkStatus = GL_FALSE;
 		glGetProgramiv(program, GL_LINK_STATUS, &linkStatus);
+		LOGI(" %i linkStatus", linkStatus);
 		if (linkStatus != GL_TRUE) {
 			GLint bufLength = 0;
 			glGetProgramiv(program, GL_INFO_LOG_LENGTH, &bufLength);
@@ -31,13 +41,14 @@ void ComOGLESProgram::onSurfaceCreated() {
 				char* buf = (char*) malloc(bufLength);
 				if (buf) {
 					glGetProgramInfoLog(program, bufLength, NULL, buf);
-/*					LOGE("Could not link program:\n%s\n", buf);*/
+					LOGE("Could not link program:\n%s\n", buf);
 					free(buf);
 				}
 			}
 			glDeleteProgram(program);
 			program = 0;
 		}
+		LOGI(" %i program Shader", program);
 		//
 		vertexLocation = glGetAttribLocation(program, vertexString);
 		matrixLocation = glGetUniformLocation(program, matrixString);

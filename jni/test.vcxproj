@@ -217,6 +217,7 @@
     <ClInclude Include="OpenglESHelper.h" />
     <ClInclude Include="OpenglESProgram.h" />
     <ClInclude Include="Resource.h" />
+    <ClInclude Include="TextureManager.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ComOGLESProgram.cpp" />
@@ -228,6 +229,7 @@
     <ClCompile Include="OpenglESHelper.cpp" />
     <ClCompile Include="OpenglESProgram.cpp" />
     <ClCompile Include="Resource.cpp" />
+    <ClCompile Include="TextureManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="FragmentShader.glsl" />

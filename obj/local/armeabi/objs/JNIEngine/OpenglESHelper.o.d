@@ -67,7 +67,9 @@ obj/local/armeabi/objs/JNIEngine/OpenglESHelper.o: jni/OpenglESHelper.cpp \
  E:/android/android-ndk-r9d/platforms/android-19/arch-arm/usr/include/sys/time.h \
  E:/android/android-ndk-r9d/platforms/android-19/arch-arm/usr/include/linux/time.h \
  E:/android/android-ndk-r9d/platforms/android-19/arch-arm/usr/include/asm/siginfo.h \
- E:/android/android-ndk-r9d/platforms/android-19/arch-arm/usr/include/asm-generic/siginfo.h
+ E:/android/android-ndk-r9d/platforms/android-19/arch-arm/usr/include/asm-generic/siginfo.h \
+ jni/LogHelper.h \
+ E:/android/android-ndk-r9d/platforms/android-19/arch-arm/usr/include/android/log.h
 
 jni/OpenglESHelper.h:
 
@@ -208,3 +210,7 @@ E:/android/android-ndk-r9d/platforms/android-19/arch-arm/usr/include/linux/time.
 E:/android/android-ndk-r9d/platforms/android-19/arch-arm/usr/include/asm/siginfo.h:
 
 E:/android/android-ndk-r9d/platforms/android-19/arch-arm/usr/include/asm-generic/siginfo.h:
+
+jni/LogHelper.h:
+
+E:/android/android-ndk-r9d/platforms/android-19/arch-arm/usr/include/android/log.h:

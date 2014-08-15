@@ -9,7 +9,7 @@ class OpenglESProgram
 {
 protected:
 	OpenglESProgram();
-	~OpenglESProgram();
+	virtual ~OpenglESProgram();
 	
 	int program;
 	int vertexLocation;
@@ -22,9 +22,9 @@ protected:
 	int showVec4Location;
 	int changeMatrixLocation;
 
-	glm::mat4 mProjMatrix; //投影矩阵
-	glm::mat4 mVMatrix; //视图矩阵
-	glm::mat4 mMVPMatrix; //复合变化矩阵
+	glm::mat4 mProjMatrix; //鎶曞奖
+	glm::mat4 mVMatrix; //瑙嗗浘鐭╅樀
+	glm::mat4 mMVPMatrix; //澶嶅悎鐭╅樀
 
 	static const char* vertexString;
 	static const char* matrixString;
@@ -44,9 +44,9 @@ protected:
 	float bgColor[4];
 
 public:
-	void onSurfaceCreated();
-	void onSurfaceChanged(int width, int height);
-	void onDrawFrame();
+	virtual void onSurfaceCreated();
+	virtual void onSurfaceChanged(int width, int height);
+	virtual void onDrawFrame();
 	void setBgColor(float r, float g, float b, float alpha);
 	inline int getProgram() {
 		return program;

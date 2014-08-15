@@ -1,7 +1,5 @@
 ﻿package com.cwq.engine;
 
-import com.cwq.cut.CutRectangle;
-import com.cwq.object.RectangleTexture;
 import com.cwq.scene.Scene;
 
 import android.app.Activity;
@@ -19,11 +17,6 @@ public class CutActivity extends Activity {
 	public static final String TAG = "CutActivity";
 	
 	private Scene myScene;
-	
-	private RectangleTexture backRectTexture;
-	private RectangleTexture firstBackRect;
-	private RectangleTexture upLayer;
-	private CutRectangle cutRect;
 	
 	private float downX;
 	private float downY;
@@ -49,15 +42,12 @@ public class CutActivity extends Activity {
 					}
 					switch (event.getAction()) {
 					case MotionEvent.ACTION_DOWN:
-						cutRect.touchDown(normalizedX, normalizedY);
 						downX = normalizedX;
 						downY = normalizedY;
 						break;
 					case MotionEvent.ACTION_MOVE:
-						cutRect.touchMove(normalizedX - downX, normalizedY - downY);
 						break;
 					case MotionEvent.ACTION_UP:
-						cutRect.touchUp();
 						break;
 					default:
 						break;
@@ -88,48 +78,14 @@ public class CutActivity extends Activity {
             @Override  
             public void onClick(View v) {  
                 // TODO Auto-generated method stub  
-            	RectangleTexture tempTexture = cutRect.getCutTempTexture();
-            	myScene.addObj(tempTexture, 25);
-            	RectangleTexture finalTexture = cutRect.getCutFinalTexture();
-            	cutRect.doCutAnimation(myScene, tempTexture, finalTexture);
-            	myScene.removeObj(tempTexture);
-            	setCut(finalTexture, true);
             }  
         });  
         resetButton.setOnClickListener(new Button.OnClickListener() {  
             @Override  
             public void onClick(View v) {  
                 // TODO Auto-generated method stub  
-            	firstBackRect.setAlphaTo(1);
-            	firstBackRect.scaleTo(1, 1);
-            	firstBackRect.moveTo(0, 0);
-            	setCut(firstBackRect, false);
             }  
         }); 
-		
-		firstBackRect = backRectTexture = new RectangleTexture(R.drawable.second);
-		
-		upLayer = new RectangleTexture(0.0f ,0.0f, backRectTexture.getHalfW() * 2,
-				backRectTexture.getHalfH() * 2, -1);
-		
-		cutRect = new CutRectangle(R.drawable.cut, backRectTexture, upLayer);
-		myScene.addObj(cutRect, 30);
-		
-		setCut(backRectTexture, false);
-	}
-	
-	private void setCut(RectangleTexture back, boolean isFull) {
-		myScene.removeObj(backRectTexture);
-		myScene.removeObj(upLayer);
-		
-		backRectTexture = back;
-		myScene.addObj(backRectTexture, 10);
-		
-		upLayer = new RectangleTexture(0.0f ,0.0f, backRectTexture.getHalfW() * 2,
-				backRectTexture.getHalfH() * 2, -1);
-		myScene.addObj(upLayer, 20);
-		
-		cutRect.setBackRect(backRectTexture, upLayer, isFull);
 	}
 	
 	@Override
