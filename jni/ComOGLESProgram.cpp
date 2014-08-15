@@ -14,8 +14,10 @@ ComOGLESProgram::ComOGLESProgram()
 }
 
 ComOGLESProgram::~ComOGLESProgram() {
-	free(vertexShaderString);
-	free(fragmentShaderString);
+	if (vertexShaderString != NULL)
+		free(vertexShaderString);
+	if (fragmentShaderString != NULL)
+		free(fragmentShaderString);
 }
 
 void ComOGLESProgram::onSurfaceCreated() {
