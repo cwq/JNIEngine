@@ -1,5 +1,6 @@
-obj/local/armeabi/objs/JNIEngine/BaseObject.o: jni/BaseObject.cpp \
- jni/BaseObject.h jni/OpenglESProgram.h jni/OpenglESHelper.h \
+obj/local/armeabi/objs/JNIEngine/BaseAnimation.o: jni/BaseAnimation.cpp \
+ jni/BaseAnimation.h jni/BaseObject.h jni/OpenglESProgram.h \
+ jni/OpenglESHelper.h \
  E:/android/android-ndk-r9d/platforms/android-19/arch-arm/usr/include/GLES2/gl2.h \
  E:/android/android-ndk-r9d/platforms/android-19/arch-arm/usr/include/GLES2/gl2platform.h \
  E:/android/android-ndk-r9d/platforms/android-19/arch-arm/usr/include/KHR/khrplatform.h \
@@ -228,7 +229,9 @@ obj/local/armeabi/objs/JNIEngine/BaseObject.o: jni/BaseObject.cpp \
  E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/stl/_tree.h \
  E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/stl/_tree.c \
  E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/stl/_relops_cont.h \
- jni/AnimationRunner.h jni/BaseAnimation.h
+ jni/AnimationRunner.h
+
+jni/BaseAnimation.h:
 
 jni/BaseObject.h:
 
@@ -807,5 +810,3 @@ E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/stl/_tree.c:
 E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/stl/_relops_cont.h:
 
 jni/AnimationRunner.h:
-
-jni/BaseAnimation.h:

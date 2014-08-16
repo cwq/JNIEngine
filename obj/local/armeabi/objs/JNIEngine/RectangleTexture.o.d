@@ -229,7 +229,7 @@ obj/local/armeabi/objs/JNIEngine/RectangleTexture.o: \
  E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/stl/_tree.h \
  E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/stl/_tree.c \
  E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/stl/_relops_cont.h \
- jni/LogHelper.h \
+ jni/AnimationRunner.h jni/BaseAnimation.h jni/LogHelper.h \
  E:/android/android-ndk-r9d/platforms/android-19/arch-arm/usr/include/android/log.h
 
 jni/RectangleTexture.h:
@@ -811,6 +811,10 @@ E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/stl/_tree.h:
 E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/stl/_tree.c:
 
 E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/stl/_relops_cont.h:
+
+jni/AnimationRunner.h:
+
+jni/BaseAnimation.h:
 
 jni/LogHelper.h:
 

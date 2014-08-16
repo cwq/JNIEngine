@@ -231,7 +231,8 @@ obj/local/armeabi/objs/JNIEngine/com_cwq_jni_JNILib.o: \
  E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/stl/_map.h \
  E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/stl/_tree.h \
  E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/stl/_tree.c \
- E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/stl/_relops_cont.h
+ E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/stl/_relops_cont.h \
+ jni/AnimationRunner.h jni/BaseAnimation.h
 
 jni/com_cwq_jni_JNILib.h:
 
@@ -822,3 +823,7 @@ E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/stl/_tree.h:
 E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/stl/_tree.c:
 
 E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/stl/_relops_cont.h:
+
+jni/AnimationRunner.h:
+
+jni/BaseAnimation.h:

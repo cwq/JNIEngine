@@ -16,11 +16,15 @@ BaseObject::BaseObject() {
 	transMatrix = glm::mat4(1.0f);
 	scaleMatrix = glm::mat4(1.0f);
 	rotateMatrix = glm::mat4(1.0f);
+	animationRunner = NULL;
+	attribute = NULL;
 }
 
 BaseObject::~BaseObject() {
 	if (attribute != NULL)
 		delete[] attribute;
+	if (animationRunner != NULL)
+		delete animationRunner;
 }
 
 float BaseObject::getScaleX() {
@@ -83,18 +87,26 @@ void BaseObject::scaleTo(float scaleX, float scaleY) {
 	scaleMatrix[1][1] = scaleY;
 }
 
+void BaseObject::setAlphaBy(float deta) {
+	this->alpha += deta;
+}
+
+void BaseObject::setAlphaTo(float alpha) {
+	this->alpha = alpha;
+}
+
 bool BaseObject::isRunAnimation() {
 	return false;
 }
 
-void BaseObject::setAnimation(/*BaseAnimation animation*/) {
-/*	animationRunner = new AnimationRunner(this, animation);*/
+void BaseObject::setAnimation(BaseAnimation* animation) {
+	animationRunner = new AnimationRunner(this, animation);
 }
 
 void BaseObject::doAnimation(double sElapsed) {
-// 	if (animationRunner != null) {
-// 		animationRunner.runAnimation(sElapsed);
-// 	}
+	if (animationRunner != NULL) {
+		animationRunner->runAnimation(sElapsed);
+	}
 }
 
 void BaseObject::addTextureToManager() {

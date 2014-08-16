@@ -3,6 +3,10 @@
 
 #include "OpenglESProgram.h"
 #include "TextureManager.h"
+#include "AnimationRunner.h"
+
+class AnimationRunner;
+class BaseAnimation;
 
 class BaseObject
 {
@@ -34,7 +38,7 @@ protected:
 
 	int zOrder;
 
-/*	AnimationRunner animationRunner;*/
+	AnimationRunner* animationRunner;
 
 	glm::mat4 transMatrix;
 	glm::mat4 rotateMatrix;
@@ -66,29 +70,24 @@ public:
 		return rotateMatrix;
 	}
 
-	inline void setAlphaBy(float deta) {
-		this->alpha += deta;
-	}
-	inline void setAlphaTo(float alpha) {
-		this->alpha = alpha;
-	}
-
 	float getScaleX();
 	float getScaleY();
 
-	void setShowVec4(float centerX, float centerY, float halfW, float halfH);
-	void setInVec4(float centerX, float centerY, float halfW, float halfH);
-	void setColor(float r, float g, float b, float a);
+	virtual void setShowVec4(float centerX, float centerY, float halfW, float halfH);
+	virtual void setInVec4(float centerX, float centerY, float halfW, float halfH);
+	virtual void setColor(float r, float g, float b, float a);
 
-	void moveTo(float x, float y);
-	void moveBy(float dx, float dy);
-	void rotateBy(float angle, float x, float y, float z);
-	void rotateTo(glm::mat4 rotate);
-	void scaleTo(float scaleX, float scaleY);
-	void scaleBy(float scaleX, float scaleY);
+	virtual void moveTo(float x, float y);
+	virtual void moveBy(float dx, float dy);
+	virtual void rotateBy(float angle, float x, float y, float z);
+	virtual void rotateTo(glm::mat4 rotate);
+	virtual void scaleTo(float scaleX, float scaleY);
+	virtual void scaleBy(float scaleX, float scaleY);
+	virtual void setAlphaBy(float deta);
+	virtual void setAlphaTo(float alpha);
 
 	bool isRunAnimation();
-	void setAnimation(/*BaseAnimation animation*/);
+	void setAnimation(BaseAnimation* animation);
 
 	virtual void draw(OpenglESProgram* openglESProgram, double sElapsed) = 0;
 	virtual bool isInObject(float x, float y) = 0;
