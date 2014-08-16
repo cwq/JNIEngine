@@ -18,6 +18,7 @@ public:
 	static void readShaderString(char* &shaderString, const char* shaderName);
 	static int loadShader(int type, const char* shaderSource);
 	static int createProgram();
+	static GraphicsTexture* getGraphicsTexture(const char* pPath);
 	static int createTexture(const char* pPath);
 	static void deleteTexture(int n, const GLuint* texturs);
 };

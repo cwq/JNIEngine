@@ -55,7 +55,6 @@ void OpenglESHelper::readShaderString(char* &shaderString, const char* shaderNam
 		return;
 	}
 	off_t bufferSize = AAsset_getLength(asset);
-	LOGI("file size : %d\n", bufferSize);
 	shaderString = (char *) malloc(bufferSize + 1);
 	shaderString[bufferSize] = '\0';
 	int numBytesRead = AAsset_read(asset, shaderString, bufferSize);
@@ -81,11 +80,23 @@ void OpenglESHelper::readShaderString(char* &shaderString, const char* shaderNam
 //	}
 }
 
+GraphicsTexture* OpenglESHelper::getGraphicsTexture(const char* pPath) {
+	if (pPath != NULL) {
+		GraphicsTexture* graphicsTexture = new GraphicsTexture(assetManager, pPath);
+		return graphicsTexture;
+	}
+	return NULL;
+}
+
 int OpenglESHelper::createTexture(const char* pPath) {
 	int texture = 0;
-	GraphicsTexture graphicsTexture(assetManager, pPath);
-	graphicsTexture.load();
-	texture = graphicsTexture.getTextureId();
+	GraphicsTexture* graphicsTexture = getGraphicsTexture(pPath);
+	if (graphicsTexture != NULL) {
+		graphicsTexture->load();
+		texture = graphicsTexture->getTextureId();
+		delete graphicsTexture;
+	}
+	LOGI(" %i texture", texture);
 	return texture;
 }
 

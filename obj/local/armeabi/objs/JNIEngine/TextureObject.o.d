@@ -1,5 +1,5 @@
-obj/local/armeabi/objs/JNIEngine/TextureManager.o: jni/TextureManager.cpp \
- jni/TextureManager.h \
+obj/local/armeabi/objs/JNIEngine/TextureObject.o: jni/TextureObject.cpp \
+ jni/TextureObject.h \
  E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/string \
  E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/stl/_prolog.h \
  E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/stl/_cprolog.h \
@@ -145,12 +145,7 @@ obj/local/armeabi/objs/JNIEngine/TextureManager.o: jni/TextureManager.cpp \
  E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/stl/_string_io.c \
  E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/stl/_epilog.h \
  E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/stl/_config_compat_post.h \
- E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/map \
- E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/stl/_map.h \
- E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/stl/_tree.h \
- E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/stl/_tree.c \
- E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/stl/_relops_cont.h \
- jni/OpenglESHelper.h \
+ jni/BaseObject.h jni/OpenglESProgram.h jni/OpenglESHelper.h \
  E:/android/android-ndk-r9d/platforms/android-19/arch-arm/usr/include/GLES2/gl2.h \
  E:/android/android-ndk-r9d/platforms/android-19/arch-arm/usr/include/GLES2/gl2platform.h \
  E:/android/android-ndk-r9d/platforms/android-19/arch-arm/usr/include/KHR/khrplatform.h \
@@ -165,10 +160,79 @@ obj/local/armeabi/objs/JNIEngine/TextureManager.o: jni/TextureManager.cpp \
  E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/setjmp.h \
  E:/android/android-ndk-r9d/platforms/android-19/arch-arm/usr/include/../include/setjmp.h \
  E:/android/android-ndk-r9d/platforms/android-19/arch-arm/usr/include/machine/setjmp.h \
+ jni/glm/glm.hpp jni/glm/detail/_fixes.hpp \
+ E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/cmath \
+ E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/limits \
+ E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/cassert \
+ E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/assert.h \
+ E:/android/android-ndk-r9d/platforms/android-19/arch-arm/usr/include/../include/assert.h \
+ jni/glm/fwd.hpp jni/glm/detail/type_int.hpp jni/glm/detail/setup.hpp \
+ jni/glm/detail/type_float.hpp jni/glm/detail/type_vec.hpp \
+ jni/glm/detail/precision.hpp jni/glm/detail/type_int.hpp \
+ jni/glm/detail/type_mat.hpp jni/glm/vec2.hpp \
+ jni/glm/detail/type_vec2.hpp jni/glm/detail/type_vec.hpp \
+ jni/glm/detail/type_vec2.inl jni/glm/vec3.hpp \
+ jni/glm/detail/type_vec3.hpp jni/glm/detail/type_vec3.inl \
+ jni/glm/vec4.hpp jni/glm/detail/type_vec4.hpp \
+ jni/glm/detail/type_vec4.inl jni/glm/mat2x2.hpp \
+ jni/glm/detail/type_mat2x2.hpp jni/glm/detail/../fwd.hpp \
+ jni/glm/detail/type_vec2.hpp jni/glm/detail/type_mat.hpp \
+ jni/glm/detail/type_mat2x2.inl jni/glm/mat2x3.hpp \
+ jni/glm/detail/type_mat2x3.hpp jni/glm/detail/type_vec3.hpp \
+ jni/glm/detail/type_mat2x3.inl jni/glm/mat2x4.hpp \
+ jni/glm/detail/type_mat2x4.hpp jni/glm/detail/type_vec4.hpp \
+ jni/glm/detail/type_mat2x4.inl jni/glm/mat3x2.hpp \
+ jni/glm/detail/type_mat3x2.hpp jni/glm/detail/type_mat3x2.inl \
+ jni/glm/mat3x3.hpp jni/glm/detail/type_mat3x3.hpp \
+ jni/glm/detail/type_mat3x3.inl jni/glm/mat3x4.hpp \
+ jni/glm/detail/type_mat3x4.hpp jni/glm/detail/type_mat3x4.inl \
+ jni/glm/mat4x2.hpp jni/glm/detail/type_mat4x2.hpp \
+ jni/glm/detail/type_mat4x2.inl jni/glm/mat4x3.hpp \
+ jni/glm/detail/type_mat4x3.hpp jni/glm/detail/type_mat4x3.inl \
+ jni/glm/mat4x4.hpp jni/glm/detail/type_mat4x4.hpp \
+ jni/glm/detail/type_mat4x4.inl jni/glm/trigonometric.hpp \
+ jni/glm/detail/func_trigonometric.hpp \
+ jni/glm/detail/func_trigonometric.inl jni/glm/detail/_vectorize.hpp \
+ jni/glm/detail/type_vec1.hpp jni/glm/detail/type_vec1.inl \
+ jni/glm/exponential.hpp jni/glm/detail/func_exponential.hpp \
+ jni/glm/detail/func_exponential.inl \
+ jni/glm/detail/func_vector_relational.hpp \
+ jni/glm/detail/func_vector_relational.inl jni/glm/common.hpp \
+ jni/glm/detail/func_common.hpp jni/glm/detail/_fixes.hpp \
+ jni/glm/detail/func_common.inl jni/glm/packing.hpp \
+ jni/glm/detail/func_packing.hpp jni/glm/detail/func_packing.inl \
+ jni/glm/detail/func_common.hpp jni/glm/detail/type_half.hpp \
+ jni/glm/detail/type_half.inl jni/glm/geometric.hpp \
+ jni/glm/detail/func_geometric.hpp jni/glm/detail/func_geometric.inl \
+ jni/glm/detail/func_exponential.hpp jni/glm/detail/type_float.hpp \
+ jni/glm/matrix.hpp jni/glm/detail/func_matrix.hpp \
+ jni/glm/detail/../detail/precision.hpp \
+ jni/glm/detail/../detail/setup.hpp jni/glm/detail/../detail/type_mat.hpp \
+ jni/glm/detail/../vec2.hpp jni/glm/detail/../vec3.hpp \
+ jni/glm/detail/../vec4.hpp jni/glm/detail/../mat2x2.hpp \
+ jni/glm/detail/../mat2x3.hpp jni/glm/detail/../mat2x4.hpp \
+ jni/glm/detail/../mat3x2.hpp jni/glm/detail/../mat3x3.hpp \
+ jni/glm/detail/../mat3x4.hpp jni/glm/detail/../mat4x2.hpp \
+ jni/glm/detail/../mat4x3.hpp jni/glm/detail/../mat4x4.hpp \
+ jni/glm/detail/func_matrix.inl jni/glm/detail/../geometric.hpp \
+ jni/glm/vector_relational.hpp jni/glm/detail/func_vector_relational.hpp \
+ jni/glm/integer.hpp jni/glm/detail/func_integer.hpp \
+ jni/glm/detail/func_integer.inl jni/glm/gtc/matrix_transform.hpp \
+ jni/glm/gtc/../mat4x4.hpp jni/glm/gtc/../vec2.hpp \
+ jni/glm/gtc/../vec3.hpp jni/glm/gtc/../vec4.hpp \
+ jni/glm/gtc/../gtc/constants.hpp jni/glm/gtc/../gtc/../detail/setup.hpp \
+ jni/glm/gtc/../gtc/constants.inl jni/glm/gtc/matrix_transform.inl \
+ jni/glm/gtc/../geometric.hpp jni/glm/gtc/../trigonometric.hpp \
+ jni/glm/gtc/../matrix.hpp jni/TextureManager.h \
+ E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/map \
+ E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/stl/_map.h \
+ E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/stl/_tree.h \
+ E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/stl/_tree.c \
+ E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/stl/_relops_cont.h \
  jni/LogHelper.h \
  E:/android/android-ndk-r9d/platforms/android-19/arch-arm/usr/include/android/log.h
 
-jni/TextureManager.h:
+jni/TextureObject.h:
 
 E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/string:
 
@@ -460,15 +524,9 @@ E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/stl/_epilog.h:
 
 E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/stl/_config_compat_post.h:
 
-E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/map:
+jni/BaseObject.h:
 
-E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/stl/_map.h:
-
-E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/stl/_tree.h:
-
-E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/stl/_tree.c:
-
-E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/stl/_relops_cont.h:
+jni/OpenglESProgram.h:
 
 jni/OpenglESHelper.h:
 
@@ -501,6 +559,256 @@ E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/setjmp.h:
 E:/android/android-ndk-r9d/platforms/android-19/arch-arm/usr/include/../include/setjmp.h:
 
 E:/android/android-ndk-r9d/platforms/android-19/arch-arm/usr/include/machine/setjmp.h:
+
+jni/glm/glm.hpp:
+
+jni/glm/detail/_fixes.hpp:
+
+E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/cmath:
+
+E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/limits:
+
+E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/cassert:
+
+E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/assert.h:
+
+E:/android/android-ndk-r9d/platforms/android-19/arch-arm/usr/include/../include/assert.h:
+
+jni/glm/fwd.hpp:
+
+jni/glm/detail/type_int.hpp:
+
+jni/glm/detail/setup.hpp:
+
+jni/glm/detail/type_float.hpp:
+
+jni/glm/detail/type_vec.hpp:
+
+jni/glm/detail/precision.hpp:
+
+jni/glm/detail/type_int.hpp:
+
+jni/glm/detail/type_mat.hpp:
+
+jni/glm/vec2.hpp:
+
+jni/glm/detail/type_vec2.hpp:
+
+jni/glm/detail/type_vec.hpp:
+
+jni/glm/detail/type_vec2.inl:
+
+jni/glm/vec3.hpp:
+
+jni/glm/detail/type_vec3.hpp:
+
+jni/glm/detail/type_vec3.inl:
+
+jni/glm/vec4.hpp:
+
+jni/glm/detail/type_vec4.hpp:
+
+jni/glm/detail/type_vec4.inl:
+
+jni/glm/mat2x2.hpp:
+
+jni/glm/detail/type_mat2x2.hpp:
+
+jni/glm/detail/../fwd.hpp:
+
+jni/glm/detail/type_vec2.hpp:
+
+jni/glm/detail/type_mat.hpp:
+
+jni/glm/detail/type_mat2x2.inl:
+
+jni/glm/mat2x3.hpp:
+
+jni/glm/detail/type_mat2x3.hpp:
+
+jni/glm/detail/type_vec3.hpp:
+
+jni/glm/detail/type_mat2x3.inl:
+
+jni/glm/mat2x4.hpp:
+
+jni/glm/detail/type_mat2x4.hpp:
+
+jni/glm/detail/type_vec4.hpp:
+
+jni/glm/detail/type_mat2x4.inl:
+
+jni/glm/mat3x2.hpp:
+
+jni/glm/detail/type_mat3x2.hpp:
+
+jni/glm/detail/type_mat3x2.inl:
+
+jni/glm/mat3x3.hpp:
+
+jni/glm/detail/type_mat3x3.hpp:
+
+jni/glm/detail/type_mat3x3.inl:
+
+jni/glm/mat3x4.hpp:
+
+jni/glm/detail/type_mat3x4.hpp:
+
+jni/glm/detail/type_mat3x4.inl:
+
+jni/glm/mat4x2.hpp:
+
+jni/glm/detail/type_mat4x2.hpp:
+
+jni/glm/detail/type_mat4x2.inl:
+
+jni/glm/mat4x3.hpp:
+
+jni/glm/detail/type_mat4x3.hpp:
+
+jni/glm/detail/type_mat4x3.inl:
+
+jni/glm/mat4x4.hpp:
+
+jni/glm/detail/type_mat4x4.hpp:
+
+jni/glm/detail/type_mat4x4.inl:
+
+jni/glm/trigonometric.hpp:
+
+jni/glm/detail/func_trigonometric.hpp:
+
+jni/glm/detail/func_trigonometric.inl:
+
+jni/glm/detail/_vectorize.hpp:
+
+jni/glm/detail/type_vec1.hpp:
+
+jni/glm/detail/type_vec1.inl:
+
+jni/glm/exponential.hpp:
+
+jni/glm/detail/func_exponential.hpp:
+
+jni/glm/detail/func_exponential.inl:
+
+jni/glm/detail/func_vector_relational.hpp:
+
+jni/glm/detail/func_vector_relational.inl:
+
+jni/glm/common.hpp:
+
+jni/glm/detail/func_common.hpp:
+
+jni/glm/detail/_fixes.hpp:
+
+jni/glm/detail/func_common.inl:
+
+jni/glm/packing.hpp:
+
+jni/glm/detail/func_packing.hpp:
+
+jni/glm/detail/func_packing.inl:
+
+jni/glm/detail/func_common.hpp:
+
+jni/glm/detail/type_half.hpp:
+
+jni/glm/detail/type_half.inl:
+
+jni/glm/geometric.hpp:
+
+jni/glm/detail/func_geometric.hpp:
+
+jni/glm/detail/func_geometric.inl:
+
+jni/glm/detail/func_exponential.hpp:
+
+jni/glm/detail/type_float.hpp:
+
+jni/glm/matrix.hpp:
+
+jni/glm/detail/func_matrix.hpp:
+
+jni/glm/detail/../detail/precision.hpp:
+
+jni/glm/detail/../detail/setup.hpp:
+
+jni/glm/detail/../detail/type_mat.hpp:
+
+jni/glm/detail/../vec2.hpp:
+
+jni/glm/detail/../vec3.hpp:
+
+jni/glm/detail/../vec4.hpp:
+
+jni/glm/detail/../mat2x2.hpp:
+
+jni/glm/detail/../mat2x3.hpp:
+
+jni/glm/detail/../mat2x4.hpp:
+
+jni/glm/detail/../mat3x2.hpp:
+
+jni/glm/detail/../mat3x3.hpp:
+
+jni/glm/detail/../mat3x4.hpp:
+
+jni/glm/detail/../mat4x2.hpp:
+
+jni/glm/detail/../mat4x3.hpp:
+
+jni/glm/detail/../mat4x4.hpp:
+
+jni/glm/detail/func_matrix.inl:
+
+jni/glm/detail/../geometric.hpp:
+
+jni/glm/vector_relational.hpp:
+
+jni/glm/detail/func_vector_relational.hpp:
+
+jni/glm/integer.hpp:
+
+jni/glm/detail/func_integer.hpp:
+
+jni/glm/detail/func_integer.inl:
+
+jni/glm/gtc/matrix_transform.hpp:
+
+jni/glm/gtc/../mat4x4.hpp:
+
+jni/glm/gtc/../vec2.hpp:
+
+jni/glm/gtc/../vec3.hpp:
+
+jni/glm/gtc/../vec4.hpp:
+
+jni/glm/gtc/../gtc/constants.hpp:
+
+jni/glm/gtc/../gtc/../detail/setup.hpp:
+
+jni/glm/gtc/../gtc/constants.inl:
+
+jni/glm/gtc/matrix_transform.inl:
+
+jni/glm/gtc/../geometric.hpp:
+
+jni/glm/gtc/../trigonometric.hpp:
+
+jni/glm/gtc/../matrix.hpp:
+
+jni/TextureManager.h:
+
+E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/map:
+
+E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/stl/_map.h:
+
+E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/stl/_tree.h:
+
+E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/stl/_tree.c:
+
+E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/stl/_relops_cont.h:
 
 jni/LogHelper.h:
 

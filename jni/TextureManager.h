@@ -11,6 +11,7 @@ class TextureManager
 private:
 	static std::map<std::string, int> textures;
 public:
+	static const int NO_TEXTURE;
 	static void addTexture(std::string name);
 	static int getTextureID(std::string name);
 	static void loadTextures();

@@ -16,6 +16,7 @@ const int OpenglESProgram::B_INDEX = 2;
 const int OpenglESProgram::A_INDEX = 3;
 
 OpenglESProgram::OpenglESProgram() {
+	program = 0;
 	bgColor[R_INDEX] = 0.8f;
 	bgColor[G_INDEX] = 0.8f;
 	bgColor[B_INDEX] = 0.8f;

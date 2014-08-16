@@ -471,6 +471,18 @@
     <ClInclude Include="TextureManager.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="BaseObject.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="LogHelper.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureObject.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="RectangleTexture.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="OpenglESProgram.cpp">
@@ -480,9 +492,6 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="ComOGLESProgram.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="Main.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="Matrix.cpp">
@@ -501,6 +510,15 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="TextureManager.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="BaseObject.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="TextureObject.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="RectangleTexture.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

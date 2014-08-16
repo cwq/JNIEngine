@@ -19,6 +19,38 @@ int32_t GraphicsTexture::getWidth() {
 	return mWidth;
 }
 
+void GraphicsTexture::loadWidthHeight() {
+	png_byte lHeader[8];
+	png_structp lPngPtr = NULL;
+	png_infop lInfoPtr = NULL;
+
+	if (mResource.open() != 1) goto ERROR;
+	if (mResource.read(lHeader, sizeof(lHeader)) != 1)
+		goto ERROR;
+	if (png_sig_cmp(lHeader, 0, 8) != 0) goto ERROR;
+	lPngPtr = png_create_read_struct(PNG_LIBPNG_VER_STRING,
+		NULL, NULL, NULL);
+	if (!lPngPtr) goto ERROR;
+	lInfoPtr = png_create_info_struct(lPngPtr);
+	if (!lInfoPtr) goto ERROR;
+	png_set_read_fn(lPngPtr, &mResource, callback_read);
+	if (setjmp(png_jmpbuf(lPngPtr))) goto ERROR;
+	png_set_sig_bytes(lPngPtr, 8);
+	png_read_info(lPngPtr, lInfoPtr);
+	png_int_32 lDepth, lColorType;
+	png_uint_32 lWidth, lHeight;
+	png_get_IHDR(lPngPtr, lInfoPtr, &lWidth, &lHeight,
+		&lDepth, &lColorType, NULL, NULL, NULL);
+	mWidth = lWidth; mHeight = lHeight;
+
+	ERROR:
+		mResource.close();
+		if (lPngPtr != NULL) {
+			png_infop* lInfoPtrP = lInfoPtr != NULL ? &lInfoPtr : NULL;
+			png_destroy_read_struct(&lPngPtr, lInfoPtrP, NULL);
+		}
+}
+
 uint8_t* GraphicsTexture::loadImage() {
 	png_byte lHeader[8];
 	png_structp lPngPtr = NULL;

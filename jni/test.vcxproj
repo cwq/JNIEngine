@@ -66,6 +66,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="BaseObject.h" />
     <ClInclude Include="ComOGLESProgram.h" />
     <ClInclude Include="glm\common.hpp" />
     <ClInclude Include="glm\detail\func_common.hpp" />
@@ -213,23 +214,28 @@
     <ClInclude Include="glm\vec4.hpp" />
     <ClInclude Include="glm\vector_relational.hpp" />
     <ClInclude Include="GraphicsTexture.h" />
+    <ClInclude Include="LogHelper.h" />
     <ClInclude Include="Matrix.h" />
     <ClInclude Include="OpenglESHelper.h" />
     <ClInclude Include="OpenglESProgram.h" />
+    <ClInclude Include="RectangleTexture.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="TextureManager.h" />
+    <ClInclude Include="TextureObject.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="BaseObject.cpp" />
     <ClCompile Include="ComOGLESProgram.cpp" />
     <ClCompile Include="glm\detail\dummy.cpp" />
     <ClCompile Include="glm\detail\glm.cpp" />
     <ClCompile Include="GraphicsTexture.cpp" />
-    <ClCompile Include="Main.cpp" />
     <ClCompile Include="Matrix.cpp" />
     <ClCompile Include="OpenglESHelper.cpp" />
     <ClCompile Include="OpenglESProgram.cpp" />
+    <ClCompile Include="RectangleTexture.cpp" />
     <ClCompile Include="Resource.cpp" />
     <ClCompile Include="TextureManager.cpp" />
+    <ClCompile Include="TextureObject.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="FragmentShader.glsl" />

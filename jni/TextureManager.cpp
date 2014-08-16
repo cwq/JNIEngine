@@ -1,11 +1,11 @@
 #include "TextureManager.h"
+#include "LogHelper.h"
 
-#define NO_TEXTURE -1
-
+const int TextureManager::NO_TEXTURE = -1;
 std::map<std::string, int> TextureManager::textures = std::map<std::string, int>();
 
 void TextureManager::addTexture(std::string name) {
-	if (textures.find(name) != textures.end()) {
+	if (textures.find(name) == textures.end()) {
 		textures[name] = NO_TEXTURE;
 	}
 }

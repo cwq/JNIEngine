@@ -1,9 +1,10 @@
 #include "TextureObject.h"
+#include "LogHelper.h"
 
 const int TextureObject::STRIDE = (POINT_DIMENSION + UV_DIMENSION) * FLOAT_BYTE;
 
 TextureObject::TextureObject() {
-	textureID = 0;
+	textureID = TextureManager::NO_TEXTURE;
 	picture = "";
 }
 
@@ -40,7 +41,7 @@ void TextureObject::draw(OpenglESProgram* openglESProgram, double sElapsed) {
 	glBindTexture(GL_TEXTURE_2D, textureID);
 	glUniform1f(openglESProgram->getTextureUnitLocation(), 0);
 
-	glDrawArrays(GL_TRIANGLES, 0, pointNum);
+	glDrawArrays(GL_TRIANGLE_STRIP, 0, pointNum);
 
 	glDisableVertexAttribArray(openglESProgram->getVertexLocation());
 	glDisableVertexAttribArray(openglESProgram->getTextureCoordinatesLocation());
