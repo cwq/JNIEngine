@@ -30,3 +30,10 @@ void MoveAnimation::doAnimation(BaseObject* object, float sElapsed) {
 void MoveAnimation::revert(BaseObject* object) {
 	object->moveTo(startPoint.getX(), startPoint.getY());
 }
+
+BaseAnimation* MoveAnimation::move(float duration, Point start, Point end) {
+	MoveAnimation* animation = new MoveAnimation(duration);
+	animation->setStartPoint(start);
+	animation->setEndPoint(end);
+	return animation;
+}

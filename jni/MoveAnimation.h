@@ -19,6 +19,8 @@ public:
 
 	void doAnimation(BaseObject* object, float sElapsed);
 	void revert(BaseObject* object);
+
+	static BaseAnimation* move(float duration, Point start, Point end);
 };
 
 #endif // !MOVEANIMATION_H
