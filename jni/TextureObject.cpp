@@ -14,7 +14,15 @@ void TextureObject::addTextureToManager() {
 	}
 }
 
+void TextureObject::onSurfaceCreated() {
+	setTextureID(TextureManager::NO_TEXTURE);
+}
+
 void TextureObject::draw(OpenglESProgram* openglESProgram, double sElapsed) {
+	if (textureID == TextureManager::NO_TEXTURE) {
+		setTextureID(TextureManager::getTextureID(picture));
+	}
+
 	doAnimation(sElapsed);
 
 	glUseProgram(openglESProgram->getProgram());

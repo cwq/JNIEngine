@@ -21,10 +21,14 @@ BaseObject::BaseObject() {
 }
 
 BaseObject::~BaseObject() {
-	if (attribute != NULL)
+	if (attribute != NULL) {
 		delete[] attribute;
-	if (animationRunner != NULL)
+		attribute = NULL;
+	}
+	if (animationRunner != NULL) {
 		delete animationRunner;
+		animationRunner = NULL;
+	}
 }
 
 float BaseObject::getScaleX() {
@@ -96,10 +100,14 @@ void BaseObject::setAlphaTo(float alpha) {
 }
 
 bool BaseObject::isRunAnimation() {
-	return false;
+	return animationRunner != NULL && animationRunner->isRun();
 }
 
 void BaseObject::setAnimation(BaseAnimation* animation) {
+	if (animationRunner != NULL) {
+		delete animationRunner;
+		animationRunner = NULL;
+	}
 	animationRunner = new AnimationRunner(this, animation);
 }
 
@@ -110,5 +118,9 @@ void BaseObject::doAnimation(double sElapsed) {
 }
 
 void BaseObject::addTextureToManager() {
+
+}
+
+void BaseObject::onSurfaceCreated() {
 
 }

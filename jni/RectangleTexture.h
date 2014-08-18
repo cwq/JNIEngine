@@ -44,7 +44,6 @@ public:
 		return endV;
 	}
 
-	void draw(OpenglESProgram* openglESProgram, double sElapsed);
 	bool isInObject(float x, float y);
 };
 

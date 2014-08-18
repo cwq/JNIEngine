@@ -18,7 +18,7 @@ public:
 	int load();
 	void unload();
 	GLuint getTextureId();
-	void loadWidthHeight();
+	bool loadWidthHeight();
 
 protected:
 	uint8_t* loadImage();

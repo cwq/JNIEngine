@@ -39,6 +39,30 @@ JNIEXPORT void JNICALL Java_com_cwq_jni_JNILib_onSurfaceChanged
 JNIEXPORT void JNICALL Java_com_cwq_jni_JNILib_onDrawFrame
   (JNIEnv *, jclass);
 
+/*
+ * Class:     com_cwq_jni_JNILib
+ * Method:    onTouch
+ * Signature: (IFF)V
+ */
+JNIEXPORT void JNICALL Java_com_cwq_jni_JNILib_onTouch
+  (JNIEnv *, jclass, jint, jfloat, jfloat);
+
+/*
+ * Class:     com_cwq_jni_JNILib
+ * Method:    clickCut
+ * Signature: ()V
+ */
+JNIEXPORT void JNICALL Java_com_cwq_jni_JNILib_clickCut
+  (JNIEnv *, jclass);
+
+/*
+ * Class:     com_cwq_jni_JNILib
+ * Method:    clickReset
+ * Signature: ()V
+ */
+JNIEXPORT void JNICALL Java_com_cwq_jni_JNILib_clickReset
+  (JNIEnv *, jclass);
+
 #ifdef __cplusplus
 }
 #endif

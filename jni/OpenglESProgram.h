@@ -9,7 +9,6 @@ class OpenglESProgram
 {
 protected:
 	OpenglESProgram();
-	virtual ~OpenglESProgram();
 	
 	int program;
 	int vertexLocation;
@@ -42,8 +41,11 @@ protected:
 	static const int A_INDEX;
 
 	float bgColor[4];
+	float halfW;
+	float halfH;
 
 public:
+	virtual ~OpenglESProgram();
 	virtual void onSurfaceCreated();
 	virtual void onSurfaceChanged(int width, int height);
 	virtual void onDrawFrame();
@@ -86,6 +88,12 @@ public:
 	}
 	inline glm::mat4 getmMVPMatrix() {
 		return mMVPMatrix;
+	}
+	inline float getHalfW() {
+		return halfW;
+	}
+	inline float getHalfH() {
+		return halfH;
 	}
 };
 

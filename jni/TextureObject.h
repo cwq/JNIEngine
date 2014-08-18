@@ -27,6 +27,7 @@ public:
 
 	void addTextureToManager();
 	void draw(OpenglESProgram* openglESProgram, double sElapsed);
+	void onSurfaceCreated();
 };
 
 #endif // !TEXTUREOBJECT_H

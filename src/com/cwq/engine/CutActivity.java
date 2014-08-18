@@ -1,5 +1,6 @@
 ﻿package com.cwq.engine;
 
+import com.cwq.jni.JNILib;
 import com.cwq.scene.Scene;
 
 import android.app.Activity;
@@ -17,9 +18,6 @@ public class CutActivity extends Activity {
 	public static final String TAG = "CutActivity";
 	
 	private Scene myScene;
-	
-	private float downX;
-	private float downY;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -40,18 +38,7 @@ public class CutActivity extends Activity {
 						normalizedX = ((event.getX() / (float) v.getWidth()) * 2 - 1) * v.getWidth() / v.getHeight();
 						normalizedY = -((event.getY() / (float) v.getHeight()) * 2 - 1);
 					}
-					switch (event.getAction()) {
-					case MotionEvent.ACTION_DOWN:
-						downX = normalizedX;
-						downY = normalizedY;
-						break;
-					case MotionEvent.ACTION_MOVE:
-						break;
-					case MotionEvent.ACTION_UP:
-						break;
-					default:
-						break;
-					}
+					JNILib.onTouch(event.getAction(), normalizedX, normalizedY);
 					return true;
 				}
 				return false;
@@ -78,12 +65,14 @@ public class CutActivity extends Activity {
             @Override  
             public void onClick(View v) {  
                 // TODO Auto-generated method stub  
+            	JNILib.clickCut();
             }  
         });  
         resetButton.setOnClickListener(new Button.OnClickListener() {  
             @Override  
             public void onClick(View v) {  
                 // TODO Auto-generated method stub  
+            	JNILib.clickReset();
             }  
         }); 
 	}

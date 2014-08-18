@@ -12,8 +12,6 @@ class BaseObject
 {
 protected:
 	BaseObject();
-	virtual ~BaseObject();
-
 
 	float* attribute;
 	int pointNum;
@@ -47,6 +45,7 @@ protected:
 	void doAnimation(double sElapsed);
 
 public:
+	virtual ~BaseObject();
 	inline int getzOrder() {
 		return zOrder;
 	}
@@ -92,6 +91,7 @@ public:
 	virtual void draw(OpenglESProgram* openglESProgram, double sElapsed) = 0;
 	virtual bool isInObject(float x, float y) = 0;
 	virtual void addTextureToManager();
+	virtual void onSurfaceCreated();
 };
 
 #endif // !BASEOBJECT_H

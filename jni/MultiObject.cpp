@@ -6,6 +6,13 @@ MultiObject::MultiObject() {
 	objects = std::list<BaseObject*>();
 }
 
+MultiObject::~MultiObject() {
+	for (std::list<BaseObject*>::iterator it = objects.begin(); it != objects.end(); ++it) {
+		if ((*it) != NULL)
+			delete (*it);
+	}
+}
+
 void MultiObject::addObject(BaseObject* object) {
 	objects.push_back(object);
 }
@@ -83,5 +90,11 @@ bool MultiObject::isInObject(float x, float y) {
 void MultiObject::addTextureToManager() {
 	for (std::list<BaseObject*>::iterator it = objects.begin(); it != objects.end(); ++it) {
 		(*it)->addTextureToManager();
+	}
+}
+
+void MultiObject::onSurfaceCreated() {
+	for (std::list<BaseObject*>::iterator it = objects.begin(); it != objects.end(); ++it) {
+		(*it)->onSurfaceCreated();
 	}
 }

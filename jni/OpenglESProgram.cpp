@@ -38,7 +38,7 @@ void OpenglESProgram::onSurfaceChanged(int width, int height) {
 	float aspectRatio = width > height ?
 		(float) width / (float) height :
 		(float) height / (float) width;
-	float halfW = 1, halfH = 1;
+	halfW = halfH = 1;
 	if (width > height) {
 		halfW = aspectRatio;
 	} else {

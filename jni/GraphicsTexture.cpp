@@ -19,7 +19,7 @@ int32_t GraphicsTexture::getWidth() {
 	return mWidth;
 }
 
-void GraphicsTexture::loadWidthHeight() {
+bool GraphicsTexture::loadWidthHeight() {
 	png_byte lHeader[8];
 	png_structp lPngPtr = NULL;
 	png_infop lInfoPtr = NULL;
@@ -42,6 +42,9 @@ void GraphicsTexture::loadWidthHeight() {
 	png_get_IHDR(lPngPtr, lInfoPtr, &lWidth, &lHeight,
 		&lDepth, &lColorType, NULL, NULL, NULL);
 	mWidth = lWidth; mHeight = lHeight;
+	mResource.close();
+	png_destroy_read_struct(&lPngPtr, &lInfoPtr, NULL);
+	return true;
 
 	ERROR:
 		mResource.close();
@@ -49,6 +52,7 @@ void GraphicsTexture::loadWidthHeight() {
 			png_infop* lInfoPtrP = lInfoPtr != NULL ? &lInfoPtr : NULL;
 			png_destroy_read_struct(&lPngPtr, lInfoPtrP, NULL);
 		}
+		return false;
 }
 
 uint8_t* GraphicsTexture::loadImage() {

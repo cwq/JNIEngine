@@ -11,4 +11,8 @@ public class JNILib {
 	 public static native void onSurfaceCreated();
 	 public static native void onSurfaceChanged(int width, int height);
 	 public static native void onDrawFrame();
+	 
+	 public static native void onTouch(int type, float x, float y);
+	 public static native void clickCut();
+	 public static native void clickReset();
 }

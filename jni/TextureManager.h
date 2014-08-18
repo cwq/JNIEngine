@@ -10,6 +10,8 @@ class TextureManager
 {
 private:
 	static std::map<std::string, int> textures;
+	static bool isClear;
+	static void clear();
 public:
 	static const int NO_TEXTURE;
 	static void addTexture(std::string name);

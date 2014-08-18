@@ -20,12 +20,13 @@ void RectangleTexture::setWH(std::string picture, float startU, float startV,
 	halfW = halfH = BASE_L;
 	GraphicsTexture* graph = OpenglESHelper::getGraphicsTexture(picture.data());
 	if (graph != NULL) {
-		graph->loadWidthHeight();
-		float scale = (graph->getWidth() * (endU - startU)) / (graph->getHeight() * (endV - startV));
-		if (scale > 1) {
-			halfH = halfW / scale;
-		} else {
-			halfW = halfH * scale;
+		if(graph->loadWidthHeight()) {
+			float scale = (graph->getWidth() * (endU - startU)) / (graph->getHeight() * (endV - startV));
+			if (scale > 1) {
+				halfH = halfW / scale;
+			} else {
+				halfW = halfH * scale;
+			}
 		}
 		delete graph;
 	}
@@ -52,13 +53,6 @@ void RectangleTexture::init(float centerX, float centerY, float halfw, float hal
 	};
 	attribute = new float[20];
 	memcpy(attribute, attrib, sizeof(attrib));
-}
-
-void RectangleTexture::draw(OpenglESProgram* openglESProgram, double sElapsed) {
-	if (textureID == TextureManager::NO_TEXTURE) {
-		setTextureID(TextureManager::getTextureID(picture));
-	}
-	TextureObject::draw(openglESProgram, sElapsed);
 }
 
 bool RectangleTexture::isInObject(float x, float y) {

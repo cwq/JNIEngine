@@ -12,6 +12,7 @@ private:
 
 public:
 	MultiObject();
+	~MultiObject();
 
 	void addObject(BaseObject* object);
 
@@ -27,6 +28,7 @@ public:
 	void draw(OpenglESProgram* openglESProgram, double sElapsed);
 	bool isInObject(float x, float y);
 	void addTextureToManager();
+	void onSurfaceCreated();
 };
 
 #endif // !MULTIOBJECT_H
