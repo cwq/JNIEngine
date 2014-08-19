@@ -127,6 +127,7 @@ JNIEXPORT void JNICALL Java_com_cwq_jni_JNILib_clickCut(JNIEnv * env,
 
 	scene->removeObj(backRectTexture);
 	scene->removeObj(upLayer);
+
 	backRectTexture = finalTexture;
 	upLayer = new RectangleTexture(0.0f, 0.0f, backRectTexture->getHalfW() * 2,
 			backRectTexture->getHalfH() * 2, "");
@@ -136,7 +137,10 @@ JNIEXPORT void JNICALL Java_com_cwq_jni_JNILib_clickCut(JNIEnv * env,
 	cutRect->setBackRect(backRectTexture, upLayer);
 
 	scene->removeObj(tempTexture);
-	delete tempTexture;
+	if (tempTexture != NULL) {
+		delete tempTexture;
+		tempTexture = NULL;
+	}
 }
 
 JNIEXPORT void JNICALL Java_com_cwq_jni_JNILib_clickReset(JNIEnv * env,

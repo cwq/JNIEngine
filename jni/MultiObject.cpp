@@ -8,8 +8,10 @@ MultiObject::MultiObject() {
 
 MultiObject::~MultiObject() {
 	for (std::list<BaseObject*>::iterator it = objects.begin(); it != objects.end(); ++it) {
-		if ((*it) != NULL)
+		if ((*it) != NULL) {
 			delete (*it);
+			(*it) = NULL;
+		}
 	}
 }
 

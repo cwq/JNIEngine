@@ -240,7 +240,7 @@ obj/local/armeabi/objs/JNIEngine/com_cwq_jni_JNILib.o: \
  E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/stl/_list.c \
  E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/stl/_carray.h \
  jni/FadeAnimation.h jni/ComplexAnimation.h jni/TintAnimation.h \
- jni/RotateAnimation.h jni/ScaleAnimation.h jni/Scene.h \
+ jni/RotateAnimation.h jni/ScaleAnimation.h jni/Scene.h jni/ThreadLock.h \
  jni/CutRectangle.h
 
 E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/time.h:
@@ -862,5 +862,7 @@ jni/RotateAnimation.h:
 jni/ScaleAnimation.h:
 
 jni/Scene.h:
+
+jni/ThreadLock.h:
 
 jni/CutRectangle.h:

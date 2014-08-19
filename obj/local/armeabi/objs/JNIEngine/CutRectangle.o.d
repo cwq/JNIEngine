@@ -236,8 +236,7 @@ obj/local/armeabi/objs/JNIEngine/CutRectangle.o: jni/CutRectangle.cpp \
  jni/AnimationRunner.h jni/BaseAnimation.h jni/RectangleTexture.h \
  jni/TextureObject.h jni/ScaleAnimation.h jni/FadeAnimation.h \
  jni/ComplexAnimation.h jni/TintAnimation.h jni/MoveAnimation.h \
- jni/Point.h jni/LogHelper.h \
- E:/android/android-ndk-r9d/platforms/android-19/arch-arm/usr/include/android/log.h
+ jni/Point.h
 
 jni/CutRectangle.h:
 
@@ -846,7 +845,3 @@ jni/TintAnimation.h:
 jni/MoveAnimation.h:
 
 jni/Point.h:
-
-jni/LogHelper.h:
-
-E:/android/android-ndk-r9d/platforms/android-19/arch-arm/usr/include/android/log.h:

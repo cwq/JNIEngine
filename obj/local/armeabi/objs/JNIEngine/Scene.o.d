@@ -233,7 +233,8 @@ obj/local/armeabi/objs/JNIEngine/Scene.o: jni/Scene.cpp jni/Scene.h \
  E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/stl/_tree.h \
  E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/stl/_tree.c \
  jni/AnimationRunner.h jni/BaseAnimation.h jni/ComOGLESProgram.h \
- jni/openglesprogram.h
+ jni/openglesprogram.h jni/ThreadLock.h jni/LogHelper.h \
+ E:/android/android-ndk-r9d/platforms/android-19/arch-arm/usr/include/android/log.h
 
 jni/Scene.h:
 
@@ -828,3 +829,9 @@ jni/BaseAnimation.h:
 jni/ComOGLESProgram.h:
 
 jni/openglesprogram.h:
+
+jni/ThreadLock.h:
+
+jni/LogHelper.h:
+
+E:/android/android-ndk-r9d/platforms/android-19/arch-arm/usr/include/android/log.h:

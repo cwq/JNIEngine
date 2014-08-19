@@ -513,6 +513,12 @@
     <ClInclude Include="TintAnimation.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CutRectangle.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="OpenglESProgram.cpp">
@@ -578,14 +584,14 @@
     <ClCompile Include="TintAnimation.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="Scene.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="CutRectangle.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="FragmentShader.glsl">
-      <Filter>资源文件</Filter>
-    </None>
-    <None Include="VertexShader.glsl">
-      <Filter>资源文件</Filter>
-    </None>
     <None Include="glm\detail\func_common.inl">
       <Filter>头文件</Filter>
     </None>

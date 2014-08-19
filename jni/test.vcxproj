@@ -71,6 +71,7 @@
     <ClInclude Include="BaseObject.h" />
     <ClInclude Include="ComOGLESProgram.h" />
     <ClInclude Include="ComplexAnimation.h" />
+    <ClInclude Include="CutRectangle.h" />
     <ClInclude Include="FadeAnimation.h" />
     <ClInclude Include="glm\common.hpp" />
     <ClInclude Include="glm\detail\func_common.hpp" />
@@ -229,6 +230,7 @@
     <ClInclude Include="Resource.h" />
     <ClInclude Include="RotateAnimation.h" />
     <ClInclude Include="ScaleAnimation.h" />
+    <ClInclude Include="Scene.h" />
     <ClInclude Include="TextureManager.h" />
     <ClInclude Include="TextureObject.h" />
     <ClInclude Include="TintAnimation.h" />
@@ -239,6 +241,7 @@
     <ClCompile Include="BaseObject.cpp" />
     <ClCompile Include="ComOGLESProgram.cpp" />
     <ClCompile Include="ComplexAnimation.cpp" />
+    <ClCompile Include="CutRectangle.cpp" />
     <ClCompile Include="FadeAnimation.cpp" />
     <ClCompile Include="glm\detail\dummy.cpp" />
     <ClCompile Include="glm\detail\glm.cpp" />
@@ -252,12 +255,12 @@
     <ClCompile Include="Resource.cpp" />
     <ClCompile Include="RotateAnimation.cpp" />
     <ClCompile Include="ScaleAnimation.cpp" />
+    <ClCompile Include="Scene.cpp" />
     <ClCompile Include="TextureManager.cpp" />
     <ClCompile Include="TextureObject.cpp" />
     <ClCompile Include="TintAnimation.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="FragmentShader.glsl" />
     <None Include="glm\detail\func_common.inl" />
     <None Include="glm\detail\func_exponential.inl" />
     <None Include="glm\detail\func_geometric.inl" />
@@ -362,7 +365,6 @@
     <None Include="glm\gtx\vector_angle.inl" />
     <None Include="glm\gtx\vector_query.inl" />
     <None Include="glm\gtx\wrap.inl" />
-    <None Include="VertexShader.glsl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

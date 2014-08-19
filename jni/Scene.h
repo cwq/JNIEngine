@@ -6,6 +6,7 @@
 
 #include "BaseObject.h"
 #include "ComOGLESProgram.h"
+#include "ThreadLock.h"
 
 class Scene
 {
@@ -13,6 +14,8 @@ private:
 	OpenglESProgram* openglESProgram;
 	std::list<BaseObject*> objects;
 	long lastTime;
+
+	ThreadLock* threadLock;
 
 public:
 	Scene();
