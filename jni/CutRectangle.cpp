@@ -71,11 +71,12 @@ void CutRectangle::setBackRect(RectangleTexture* backRectTexture,
 	bottomRight->moveTo(centerX + halfWCut, centerY - halfHCut);
 
 	upLayer->setAlphaTo(0);
-	upLayer->setColor(0, 0, 0, 0);
-	upLayer->setAnimation(TintAnimation::tint(ANIMATION_TIME, upLayer->getColor(), 0, 0, 0, 0.5f));
+	upLayer->setColor(0, 0, 0, 0.5f);
 	updateUpLayer();
 
 	if (!isFull) {
+		upLayer->setColor(0, 0, 0, 0);
+		upLayer->setAnimation(TintAnimation::tint(ANIMATION_TIME, upLayer->getColor(), 0, 0, 0, 0.5f));
 		ComplexAnimation* inAnimation = new ComplexAnimation(ANIMATION_TIME);
 		inAnimation->addAnimation(FadeAnimation::fade(ANIMATION_TIME, 0, 1));
 		inAnimation->addAnimation(ScaleAnimation::scale(ANIMATION_TIME, 0.2f, 1, 0.2f, 1));
