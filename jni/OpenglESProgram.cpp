@@ -44,7 +44,7 @@ void OpenglESProgram::onSurfaceChanged(int width, int height) {
 	} else {
 		halfH = aspectRatio;
 	}
-	mProjMatrix = glm::ortho( -halfW, halfW, -halfH, halfH, -1.0f, 1.0f);
+	mProjMatrix = glm::ortho( -halfW, halfW, -halfH, halfH, -10.0f, 10.0f);
 	mMVPMatrix = mProjMatrix * mVMatrix;
 }
 

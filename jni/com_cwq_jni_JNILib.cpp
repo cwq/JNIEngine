@@ -15,6 +15,8 @@
 #include "ScaleAnimation.h"
 #include "Scene.h"
 #include "CutRectangle.h"
+#include "Line.h"
+#include "Polygon.h"
 
 static const int TOUCH_DOWN = 0;
 static const int TOUCH_UP = 1;
@@ -24,6 +26,12 @@ static Scene* scene = NULL;
 static CutRectangle* cutRect = NULL;
 static RectangleTexture* backRectTexture = NULL;
 static RectangleTexture* upLayer = NULL;
+static BaseObject* temp = NULL;
+static float downX = 0;
+static float downY = 0;
+static bool isIn = false;
+static float lastx = 0;
+static float lasty = 0;
 
 JNIEXPORT void JNICALL Java_com_cwq_jni_JNILib_initAssetManager(JNIEnv * env,
 		jclass jthis, jobject assetManager) {
@@ -37,6 +45,22 @@ JNIEXPORT void JNICALL Java_com_cwq_jni_JNILib_initAssetManager(JNIEnv * env,
 			backRectTexture->getHalfW() * 2, backRectTexture->getHalfH() * 2,
 			"");
 	cutRect = new CutRectangle(backRectTexture, upLayer);
+
+	std::list<Point> points;
+	points.push_back(Point(-0.9f, 0.9f));
+	points.push_back(Point(-0.5f, 0));
+	points.push_back(Point(-0.9f, -0.9f));
+	points.push_back(Point(0, -0.5f));
+	points.push_back(Point(0.9f, -0.9f));
+	points.push_back(Point(0.5f, 0));
+	points.push_back(Point(0.9f, 0.9f));
+	points.push_back(Point(0, 0.5f));
+
+	temp = new Polygon(points, false);
+//	temp = new Line(Point(-0.8f, 0.8f), Point(0.8f, -1));
+	temp->setAlphaTo(0.5);
+	temp->setColor(1, 0, 0, 0.5);
+	scene->addObj(temp, 40);
 
 	scene->addObj(cutRect, 30);
 	scene->addObj(upLayer, 20);
@@ -58,10 +82,10 @@ JNIEXPORT void JNICALL Java_com_cwq_jni_JNILib_onSurfaceCreated(JNIEnv * env,
 //	BaseAnimation* fadeIn = FadeAnimation::fade(2.0f, 0, 1);
 //
 //	BaseAnimation* rotateAnimation = RotateAnimation::rotate(2.0f,
-//			mul->getRotateMatrix(), 360, 1, 1, 1);
+//			temp->getRotateMatrix(), 360, 1, 1, 1);
 //	rotateAnimation->setRevert(true);
 //
-//	BaseAnimation* tint = TintAnimation::tint(2.0f, mul->getColor(), 0, 1, 0, 1);
+//	BaseAnimation* tint = TintAnimation::tint(2.0f, temp->getColor(), 0, 1, 0, 1);
 //	tint->setRevert(true);
 //
 //	BaseAnimation* scaleS = ScaleAnimation::scale(2.0f, 1, 0, 1, 0);
@@ -74,7 +98,8 @@ JNIEXPORT void JNICALL Java_com_cwq_jni_JNILib_onSurfaceCreated(JNIEnv * env,
 //	c1->addAnimation(scaleS);
 //	c1->addAnimation(fadeOut);
 //	c1->addAnimation(rotateAnimation);
-//
+//	temp->setAnimation(rotateAnimation);
+
 //	ComplexAnimation* c2 = new ComplexAnimation(2.0f);
 //	c2->setRevert(false);
 //	c2->addAnimation(scaleB);
@@ -105,13 +130,21 @@ JNIEXPORT void JNICALL Java_com_cwq_jni_JNILib_onTouch(JNIEnv * env,
 		jclass jthis, jint type, jfloat x, jfloat y) {
 	switch (type) {
 		case TOUCH_DOWN:
-			cutRect->touchDown(x, y);
+//			cutRect->touchDown(x, y);
+			downX = x;
+			downY = y;
+			lastx = temp->getCenterX();
+			lasty = temp->getCenterY();
+			isIn = temp->isInObject(x, y);
 			break;
 		case TOUCH_MOVE:
-			cutRect->touchMove(x, y);
+//			cutRect->touchMove(x, y);
+			if (isIn) {
+				temp->moveTo(lastx + x - downX, lasty + y - downY);
+			}
 			break;
 		case TOUCH_UP:
-			cutRect->touchUp();
+//			cutRect->touchUp();
 			break;
 		default:
 			break;

@@ -7,8 +7,7 @@ class LinearGraph : public GraphObject
 {
 protected:
 	LinearGraph();
-public:
-	void draw(OpenglESProgram* openglESProgram, double sElapsed);
+	void draw(OpenglESProgram* openglESProgram, double sElapsed, GLenum mode);
 };
 
 #endif // !LINEARGRAPH_H

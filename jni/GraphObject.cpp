@@ -5,7 +5,7 @@ const int GraphObject::STRIDE = (POINT_DIMENSION) * FLOAT_BYTE;
 GraphObject::GraphObject() {
 	lineWidth = 5;
 	setColor(0, 0, 0, 1);
-	setInVec4(0, 0, 0, 0);
+/*	setInVec4(0, 0, 0, 0);*/
 }
 
 void GraphObject::setLineWidth(float width) {

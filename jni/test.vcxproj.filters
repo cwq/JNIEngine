@@ -519,6 +519,27 @@
     <ClInclude Include="CutRectangle.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="ThreadLock.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="GraphObject.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="LinearGraph.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CurveGraph.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Line.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Polygon.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Function.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="OpenglESProgram.cpp">
@@ -588,6 +609,27 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="CutRectangle.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="ThreadLock.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="GraphObject.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="LinearGraph.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="CurveGraph.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Line.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Polygon.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Function.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

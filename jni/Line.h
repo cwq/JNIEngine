@@ -7,15 +7,16 @@
 class Line : public LinearGraph
 {
 private:
-	Point start;
-	Point end;
-	void init();
+// 	Point start;
+// 	Point end;
+	void init(Point start, Point end);
 public:
-	Line(Point e);
-	Line(Point s, Point e);
-	Point getStart();
-	Point getEnd();
+	Line(Point end);
+	Line(Point start, Point end);
+// 	Point getStart();
+// 	Point getEnd();
 	bool isInObject(float x, float y);
+	void draw(OpenglESProgram* openglESProgram, double sElapsed);
 };
 
 #endif // !LINE_H

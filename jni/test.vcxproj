@@ -71,8 +71,10 @@
     <ClInclude Include="BaseObject.h" />
     <ClInclude Include="ComOGLESProgram.h" />
     <ClInclude Include="ComplexAnimation.h" />
+    <ClInclude Include="CurveGraph.h" />
     <ClInclude Include="CutRectangle.h" />
     <ClInclude Include="FadeAnimation.h" />
+    <ClInclude Include="Function.h" />
     <ClInclude Include="glm\common.hpp" />
     <ClInclude Include="glm\detail\func_common.hpp" />
     <ClInclude Include="glm\detail\func_exponential.hpp" />
@@ -219,6 +221,9 @@
     <ClInclude Include="glm\vec4.hpp" />
     <ClInclude Include="glm\vector_relational.hpp" />
     <ClInclude Include="GraphicsTexture.h" />
+    <ClInclude Include="GraphObject.h" />
+    <ClInclude Include="Line.h" />
+    <ClInclude Include="LinearGraph.h" />
     <ClInclude Include="LogHelper.h" />
     <ClInclude Include="Matrix.h" />
     <ClInclude Include="MoveAnimation.h" />
@@ -226,6 +231,7 @@
     <ClInclude Include="OpenglESHelper.h" />
     <ClInclude Include="OpenglESProgram.h" />
     <ClInclude Include="Point.h" />
+    <ClInclude Include="Polygon.h" />
     <ClInclude Include="RectangleTexture.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="RotateAnimation.h" />
@@ -233,6 +239,7 @@
     <ClInclude Include="Scene.h" />
     <ClInclude Include="TextureManager.h" />
     <ClInclude Include="TextureObject.h" />
+    <ClInclude Include="ThreadLock.h" />
     <ClInclude Include="TintAnimation.h" />
   </ItemGroup>
   <ItemGroup>
@@ -241,16 +248,22 @@
     <ClCompile Include="BaseObject.cpp" />
     <ClCompile Include="ComOGLESProgram.cpp" />
     <ClCompile Include="ComplexAnimation.cpp" />
+    <ClCompile Include="CurveGraph.cpp" />
     <ClCompile Include="CutRectangle.cpp" />
     <ClCompile Include="FadeAnimation.cpp" />
+    <ClCompile Include="Function.cpp" />
     <ClCompile Include="glm\detail\dummy.cpp" />
     <ClCompile Include="glm\detail\glm.cpp" />
     <ClCompile Include="GraphicsTexture.cpp" />
+    <ClCompile Include="GraphObject.cpp" />
+    <ClCompile Include="Line.cpp" />
+    <ClCompile Include="LinearGraph.cpp" />
     <ClCompile Include="Matrix.cpp" />
     <ClCompile Include="MoveAnimation.cpp" />
     <ClCompile Include="MultiObject.cpp" />
     <ClCompile Include="OpenglESHelper.cpp" />
     <ClCompile Include="OpenglESProgram.cpp" />
+    <ClCompile Include="Polygon.cpp" />
     <ClCompile Include="RectangleTexture.cpp" />
     <ClCompile Include="Resource.cpp" />
     <ClCompile Include="RotateAnimation.cpp" />
@@ -258,6 +271,7 @@
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="TextureManager.cpp" />
     <ClCompile Include="TextureObject.cpp" />
+    <ClCompile Include="ThreadLock.cpp" />
     <ClCompile Include="TintAnimation.cpp" />
   </ItemGroup>
   <ItemGroup>
