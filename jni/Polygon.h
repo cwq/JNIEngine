@@ -13,6 +13,10 @@ class Polygon : public LinearGraph
 {
 private:
 	bool empty;
+	float minX;
+	float maxX;
+	float minY;
+	float maxY;
 public:
 	Polygon(std::list<Point> points, bool empty = true);
 	void draw(OpenglESProgram* openglESProgram, double sElapsed);

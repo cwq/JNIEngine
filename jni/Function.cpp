@@ -53,5 +53,27 @@ bool Function::inTriangleUseDirection(Point p, Point end1, Point end2, Point end
 }
 
 bool Function::inTriangleUseBarycenter(Point p, Point end1, Point end2, Point end3) {
-	return false;
+	Point v0 = subtract(end3, end1);
+	Point v1 = subtract(end2, end1);
+	Point v2 = subtract(p, end1);
+
+	double dot00 = dotProduct(v0, v0);
+	double dot01 = dotProduct(v0, v1);
+	double dot02 = dotProduct(v0, v2);
+	double dot11 = dotProduct(v1, v1);
+	double dot12 = dotProduct(v1, v2);
+
+	double inverDeno = 1 / (dot00 * dot11 - dot01 * dot01);
+	double u = (dot11 * dot02 - dot01 * dot12) * inverDeno;
+	if (u < 0 || u > 1)
+		return false;
+	double v = (dot00 * dot12 - dot01 * dot02) * inverDeno;
+	if (v < 0 || v > 1)
+		return false;
+
+	return (u + v) <= 1;
+}
+
+bool Function::inTriangle(Point p, Point end1, Point end2, Point end3) {
+	return inTriangleUseDirection(p, end1, end2, end3);
 }

@@ -48,9 +48,10 @@ JNIEXPORT void JNICALL Java_com_cwq_jni_JNILib_initAssetManager(JNIEnv * env,
 
 	std::list<Point> points;
 	double step = 2 * M_PI / 120;
-	for (double i = 0; i < 2 * M_PI + step; i += step) {
+	for (double i = 0; i < M_PI + step; i += step) {
 		points.push_back(Point(cos(i) * 0.9, sin(i) * 0.9));
 	}
+	points.push_back(Point(0, -0.9f));
 
 //	points.push_back(Point(0.9f, 0.9f));
 //	points.push_back(Point(-0.9f, 0.9f));
@@ -59,7 +60,7 @@ JNIEXPORT void JNICALL Java_com_cwq_jni_JNILib_initAssetManager(JNIEnv * env,
 //	points.push_back(Point(0.9f, 0));
 //	points.push_back(Point(0, 0.5f));
 
-	temp = new Polygon(points, false);
+	temp = new Polygon(points);
 //	temp = new Line(Point(-0.8f, 0.8f), Point(0.8f, -1));
 	temp->setAlphaTo(0.5);
 	temp->setColor(1, 0, 0, 0.5);

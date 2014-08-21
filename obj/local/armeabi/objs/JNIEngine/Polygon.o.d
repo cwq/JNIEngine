@@ -233,7 +233,9 @@ obj/local/armeabi/objs/JNIEngine/Polygon.o: jni/Polygon.cpp jni/Polygon.h \
  E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/stl/_map.h \
  E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/stl/_tree.h \
  E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/stl/_tree.c \
- jni/AnimationRunner.h jni/BaseAnimation.h jni/Point.h jni/Function.h
+ jni/AnimationRunner.h jni/BaseAnimation.h jni/Point.h jni/Function.h \
+ jni/LogHelper.h \
+ E:/android/android-ndk-r9d/platforms/android-19/arch-arm/usr/include/android/log.h
 
 jni/Polygon.h:
 
@@ -832,3 +834,7 @@ jni/BaseAnimation.h:
 jni/Point.h:
 
 jni/Function.h:
+
+jni/LogHelper.h:
+
+E:/android/android-ndk-r9d/platforms/android-19/arch-arm/usr/include/android/log.h:
