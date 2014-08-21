@@ -46,8 +46,12 @@ bool Function::sameDirection(Point p1, Point p2, Point l1, Point l2) {
 	return (cross1 == cross2);
 }
 
-bool Function::inTriangle(Point p, Point end1, Point end2, Point end3) {
+bool Function::inTriangleUseDirection(Point p, Point end1, Point end2, Point end3) {
 	return sameDirection(p, end1, end2, end3) &&
 		sameDirection(p, end2, end3, end1) &&
 		sameDirection(p, end3, end1, end2);
+}
+
+bool Function::inTriangleUseBarycenter(Point p, Point end1, Point end2, Point end3) {
+	return false;
 }

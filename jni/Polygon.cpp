@@ -82,7 +82,7 @@ bool Polygon::isInObject(float x, float y) {
 				end3.set(attribute[index], attribute[index + 1]);
 			}
 
-			if (Function::inTriangle(p, end1, end2, end3))
+			if (Function::inTriangleUseDirection(p, end1, end2, end3))
 				return true;
 		}
 	} else {
@@ -97,7 +97,7 @@ bool Polygon::isInObject(float x, float y) {
 			index += POINT_DIMENSION;
 			end3.set(attribute[index], attribute[index + 1]);
 
-			if (Function::inTriangle(p, end1, end2, end3))
+			if (Function::inTriangleUseDirection(p, end1, end2, end3))
 				return true;
 		}
 	}
