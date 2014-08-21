@@ -47,14 +47,16 @@ JNIEXPORT void JNICALL Java_com_cwq_jni_JNILib_initAssetManager(JNIEnv * env,
 	cutRect = new CutRectangle(backRectTexture, upLayer);
 
 	std::list<Point> points;
-	points.push_back(Point(-0.9f, 0.9f));
-	points.push_back(Point(-0.5f, 0));
-	points.push_back(Point(-0.9f, -0.9f));
-	points.push_back(Point(0, -0.5f));
-	points.push_back(Point(0.9f, -0.9f));
-	points.push_back(Point(0.5f, 0));
-	points.push_back(Point(0.9f, 0.9f));
-	points.push_back(Point(0, 0.5f));
+	double step = 2 * M_PI / 120;
+	for (double i = 0; i < 2 * M_PI + step; i += step) {
+		points.push_back(Point(cos(i) * 0.9, sin(i) * 0.9));
+	}
+//	points.push_back(Point(-0.9f, 0));
+//	points.push_back(Point(0, -0.5f));
+//	points.push_back(Point(0, -0.9f));
+//	points.push_back(Point(0.9f, 0));
+//	points.push_back(Point(0, 0.9f));
+//	points.push_back(Point(0, 0.5f));
 
 	temp = new Polygon(points, false);
 //	temp = new Line(Point(-0.8f, 0.8f), Point(0.8f, -1));
@@ -128,6 +130,7 @@ JNIEXPORT void JNICALL Java_com_cwq_jni_JNILib_onDrawFrame(JNIEnv * env,
 
 JNIEXPORT void JNICALL Java_com_cwq_jni_JNILib_onTouch(JNIEnv * env,
 		jclass jthis, jint type, jfloat x, jfloat y) {
+	long last, cur;
 	switch (type) {
 		case TOUCH_DOWN:
 //			cutRect->touchDown(x, y);
@@ -135,7 +138,10 @@ JNIEXPORT void JNICALL Java_com_cwq_jni_JNILib_onTouch(JNIEnv * env,
 			downY = y;
 			lastx = temp->getCenterX();
 			lasty = temp->getCenterY();
+			last = clock();
 			isIn = temp->isInObject(x, y);
+			cur = clock();
+			LOGI("%f s used", ((double)cur - last) / CLOCKS_PER_SEC);
 			break;
 		case TOUCH_MOVE:
 //			cutRect->touchMove(x, y);

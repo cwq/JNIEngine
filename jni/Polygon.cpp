@@ -56,10 +56,36 @@ void Polygon::draw(OpenglESProgram* openglESProgram, double sElapsed) {
 bool Polygon::isInObject(float x, float y) {
 	Point p(x - centerX, y - centerY);
 	int index = 0;
+	Point end1, end2, end3;
 	if (empty) {
+		for (int num = 0; num < pointNum - 2; ++num) {
+			if (num % 2 == 0) {
+				//num/2  (pointNum - 1 - (num-1) / 2)
+				//1
+				index = (num / 2) * POINT_DIMENSION;
+				end1.set(attribute[index], attribute[index + 1]);
+				//2
+				index = (pointNum - 1 - num / 2) * POINT_DIMENSION;
+				end2.set(attribute[index], attribute[index + 1]);
+				//3
+				index = (num / 2 + 1) * POINT_DIMENSION;
+				end3.set(attribute[index], attribute[index + 1]);
+			} else {
+				//1
+				index = (pointNum - 1 - (num-1) / 2) * POINT_DIMENSION;
+				end1.set(attribute[index], attribute[index + 1]);
+				//2
+				index = ((num + 1) / 2) * POINT_DIMENSION;
+				end2.set(attribute[index], attribute[index + 1]);
+				//3
+				index = (pointNum - 1 - (num+1) / 2) * POINT_DIMENSION;
+				end3.set(attribute[index], attribute[index + 1]);
+			}
 
+			if (Function::inTriangle(p, end1, end2, end3))
+				return true;
+		}
 	} else {
-		Point end1, end2, end3;
 		for (int num = 0; num < pointNum - 2; ++num) {
 			//1
 			index = num * POINT_DIMENSION;
