@@ -7,8 +7,6 @@ class CurveGraph : public GraphObject
 {
 protected:
 	CurveGraph();
-public:
-	void draw(OpenglESProgram* openglESProgram, double sElapsed);
 };
 
 #endif // !CURVEGRAPH_H

@@ -10,10 +10,10 @@ protected:
 	static const int STRIDE;
 
 	GraphObject();
+	void draw(OpenglESProgram* openglESProgram, double sElapsed, GLenum mode);
 
 public:
 	void setLineWidth(float width);
-	void draw(OpenglESProgram* openglESProgram, double sElapsed);
 };
 
 #endif // !GRAPHOBJECT_H

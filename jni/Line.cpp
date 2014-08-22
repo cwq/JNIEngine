@@ -36,5 +36,5 @@ bool Line::isInObject(float x, float y) {
 }
 
 void Line::draw(OpenglESProgram* openglESProgram, double sElapsed) {
-	LinearGraph::draw(openglESProgram, sElapsed, GL_LINES);
+	GraphObject::draw(openglESProgram, sElapsed, GL_LINES);
 }

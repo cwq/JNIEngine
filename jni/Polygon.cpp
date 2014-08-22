@@ -93,9 +93,9 @@ Polygon::Polygon(std::list<Point> points, bool empty/* = true*/) {
 
 void Polygon::draw(OpenglESProgram* openglESProgram, double sElapsed) {
 	if (empty) {
-		LinearGraph::draw(openglESProgram, sElapsed, GL_LINE_LOOP);
+		GraphObject::draw(openglESProgram, sElapsed, GL_LINE_LOOP);
 	} else {
-		LinearGraph::draw(openglESProgram, sElapsed, GL_TRIANGLE_STRIP);
+		GraphObject::draw(openglESProgram, sElapsed, GL_TRIANGLE_STRIP);
 	}
 }
 

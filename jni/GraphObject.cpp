@@ -12,7 +12,7 @@ void GraphObject::setLineWidth(float width) {
 	lineWidth = width;
 }
 
-void GraphObject::draw(OpenglESProgram* openglESProgram, double sElapsed) {
+void GraphObject::draw(OpenglESProgram* openglESProgram, double sElapsed, GLenum mode) {
 	doAnimation(sElapsed);
 
 	glUseProgram(openglESProgram->getProgram());
@@ -36,4 +36,13 @@ void GraphObject::draw(OpenglESProgram* openglESProgram, double sElapsed) {
 	glUniform1f(openglESProgram->getTextureUnitLocation(), 0);
 
 	glVertexAttribPointer(openglESProgram->getTextureCoordinatesLocation(), UV_DIMENSION, GL_FLOAT, GL_FALSE, STRIDE, attribute);
+	glVertexAttribPointer(openglESProgram->getVertexLocation(), POINT_DIMENSION, GL_FLOAT, GL_FALSE, STRIDE, attribute);
+
+	glEnableVertexAttribArray(openglESProgram->getVertexLocation());
+	glEnableVertexAttribArray(openglESProgram->getTextureCoordinatesLocation());
+
+	glDrawArrays(mode, 0, pointNum);
+
+	glDisableVertexAttribArray(openglESProgram->getVertexLocation());
+	glDisableVertexAttribArray(openglESProgram->getTextureCoordinatesLocation());
 }
