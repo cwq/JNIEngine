@@ -16,10 +16,10 @@ void Line::init(Point start, Point end) {
 	pointNum = 2;
 	attribute = new float[6];
 	attribute[0] = start.getX() - cx;
-	attribute[1] = start.getY() - cx;
+	attribute[1] = start.getY() - cy;
 	attribute[2] = 0;
 	attribute[3] = end.getX() - cx;
-	attribute[4] = end.getY() - cx;
+	attribute[4] = end.getY() - cy;
 	attribute[5] = 0;
 }
 

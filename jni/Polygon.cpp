@@ -120,6 +120,9 @@ bool Polygon::isInObject(float x, float y) {
 				|| (attribute[indexj + 1] < p.getY() && attribute[index + 1] >= p.getY()))
 				&& (attribute[index] <= p.getX() || attribute[indexj] <= p.getX())) {
 					//判断点在直线右边
+					//xi + (y-yi) / (yj-yi) * (xj-xi) < x
+					//xj=xi时：xi<x成立
+					//yj=yi不可能进入
 					if (attribute[index] + (p.getY()-attribute[index + 1]) /
 						(attribute[indexj + 1] - attribute[index + 1]) *
 						(attribute[indexj] - attribute[index]) < p.getX()) {
