@@ -7,6 +7,7 @@ class CurveGraph : public GraphObject
 {
 protected:
 	CurveGraph();
+	static const int CURVE_POINTS;
 };
 
 #endif // !CURVEGRAPH_H

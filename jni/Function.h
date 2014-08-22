@@ -16,6 +16,8 @@ public:
 	static double distance(Point p1, Point p2);
 	static double distance(Point p, Point l1, Point l2);
 
+	static double angle(Point v1, Point v2);
+
 	static bool sameDirection(Point p1, Point p2, Point l1, Point l2);
 	static bool inTriangleUseDirection(Point p, Point end1, Point end2, Point end3);
 	static bool inTriangleUseBarycenter(Point p, Point end1, Point end2, Point end3);

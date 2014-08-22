@@ -5,11 +5,24 @@ const int GraphObject::STRIDE = (POINT_DIMENSION) * FLOAT_BYTE;
 GraphObject::GraphObject() {
 	lineWidth = 5;
 	setColor(0, 0, 0, 1);
+
+	empty = true;
+	minX = -10;
+	maxX = 10;
+	minY = -10;
+	maxY = 10;
 /*	setInVec4(0, 0, 0, 0);*/
 }
 
 void GraphObject::setLineWidth(float width) {
 	lineWidth = width;
+}
+
+bool GraphObject::isOutBorder(float x, float y) {
+	if (x < minX || x > maxX || y < minY || y > maxY) {
+		return true;
+	}
+	return false;
 }
 
 void GraphObject::draw(OpenglESProgram* openglESProgram, double sElapsed, GLenum mode) {

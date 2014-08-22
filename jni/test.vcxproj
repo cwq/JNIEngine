@@ -73,6 +73,7 @@
     <ClInclude Include="ComplexAnimation.h" />
     <ClInclude Include="CurveGraph.h" />
     <ClInclude Include="CutRectangle.h" />
+    <ClInclude Include="Ellipse.h" />
     <ClInclude Include="FadeAnimation.h" />
     <ClInclude Include="Function.h" />
     <ClInclude Include="glm\common.hpp" />
@@ -250,6 +251,7 @@
     <ClCompile Include="ComplexAnimation.cpp" />
     <ClCompile Include="CurveGraph.cpp" />
     <ClCompile Include="CutRectangle.cpp" />
+    <ClCompile Include="Ellipse.cpp" />
     <ClCompile Include="FadeAnimation.cpp" />
     <ClCompile Include="Function.cpp" />
     <ClCompile Include="glm\detail\dummy.cpp" />

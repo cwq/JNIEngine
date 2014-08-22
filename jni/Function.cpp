@@ -35,6 +35,12 @@ double Function::distance(Point p, Point l1, Point l2) {
 	return dis;
 }
 
+double Function::angle(Point v1, Point v2) {
+	return acos(dotProduct(v1, v2) / 
+		(sqrt((double)v1.getX()*v1.getX() + v1.getY()*v1.getY()) *
+				sqrt((double)v2.getX()*v2.getX() + v2.getY()*v2.getY())));
+}
+
 bool Function::sameDirection(Point p1, Point p2, Point l1, Point l2) {
 	Point v1 = subtract(l1, l2);
 	Point v2 = subtract(p2, l2);

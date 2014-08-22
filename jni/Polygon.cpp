@@ -11,8 +11,6 @@ Polygon::Polygon(std::list<Point> points, bool empty/* = true*/) {
 	float cy = 0;
 
 	std::list<Point>::iterator it = points.begin();
-	minX = maxX = (*it).getX();
-	minY = maxY = (*it).getY();
 	float tempX, tempY;
 	if (empty) {
 		for (; it != points.end(); ++it) {
@@ -102,7 +100,7 @@ void Polygon::draw(OpenglESProgram* openglESProgram, double sElapsed) {
 bool Polygon::isInObject(float x, float y) {
 	Point p(x - centerX, y - centerY);
 
-	if (p.getX() < minX || p.getX() > maxX || p.getY() < minY || p.getY() > maxY) {
+	if (isOutBorder(p.getX(), p.getY())) {
 		return false;
 	}
 
