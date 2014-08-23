@@ -543,6 +543,9 @@
     <ClInclude Include="Ellipse.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="Bezier.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="OpenglESProgram.cpp">
@@ -636,6 +639,9 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="Ellipse.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Bezier.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

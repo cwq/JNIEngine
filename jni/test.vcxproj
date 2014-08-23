@@ -69,6 +69,7 @@
     <ClInclude Include="AnimationRunner.h" />
     <ClInclude Include="BaseAnimation.h" />
     <ClInclude Include="BaseObject.h" />
+    <ClInclude Include="Bezier.h" />
     <ClInclude Include="ComOGLESProgram.h" />
     <ClInclude Include="ComplexAnimation.h" />
     <ClInclude Include="CurveGraph.h" />
@@ -247,6 +248,7 @@
     <ClCompile Include="AnimationRunner.cpp" />
     <ClCompile Include="BaseAnimation.cpp" />
     <ClCompile Include="BaseObject.cpp" />
+    <ClCompile Include="Bezier.cpp" />
     <ClCompile Include="ComOGLESProgram.cpp" />
     <ClCompile Include="ComplexAnimation.cpp" />
     <ClCompile Include="CurveGraph.cpp" />

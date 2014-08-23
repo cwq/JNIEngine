@@ -13,14 +13,16 @@ Ellipse::Ellipse(float a, float b, float centerX /* = 0 */, float centerY /* = 0
 	if (endAngle < startAngle)
 		endAngle += 2*M_PI;
 
-	pointNum = (endAngle - startAngle) / (2*M_PI) * CURVE_POINTS + 1;
-	if (!empty)
-		pointNum++;
+	pointNum = (endAngle - startAngle) / (2*M_PI) * CURVE_POINTS + 2;
+
+	bool isFull = ((endAngle - startAngle) == (2*M_PI));
+	if (isFull)
+		pointNum--;
 
 	attribute = new float[pointNum * POINT_DIMENSION];
 	int num = 0;
 
-	if (!empty) {
+	if (!isFull) {
 		attribute[num++] = 0;
 		attribute[num++] = 0;
 		attribute[num++] = 0;

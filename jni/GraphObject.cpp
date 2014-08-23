@@ -7,10 +7,10 @@ GraphObject::GraphObject() {
 	setColor(0, 0, 0, 1);
 
 	empty = true;
-	minX = -10;
-	maxX = 10;
-	minY = -10;
-	maxY = 10;
+	minX = 10;
+	maxX = -10;
+	minY = 10;
+	maxY = -10;
 /*	setInVec4(0, 0, 0, 0);*/
 }
 

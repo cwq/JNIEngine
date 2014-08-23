@@ -1,4 +1,4 @@
-obj/local/armeabi/objs/JNIEngine/Ellipse.o: jni/Ellipse.cpp jni/Ellipse.h \
+obj/local/armeabi/objs/JNIEngine/Bezier.o: jni/Bezier.cpp jni/Bezier.h \
  jni/CurveGraph.h jni/GraphObject.h jni/BaseObject.h \
  jni/OpenglESProgram.h jni/OpenglESHelper.h \
  E:/android/android-ndk-r9d/platforms/android-19/arch-arm/usr/include/GLES2/gl2.h \
@@ -229,9 +229,11 @@ obj/local/armeabi/objs/JNIEngine/Ellipse.o: jni/Ellipse.cpp jni/Ellipse.h \
  E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/stl/_tree.h \
  E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/stl/_tree.c \
  E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/stl/_relops_cont.h \
- jni/AnimationRunner.h jni/BaseAnimation.h jni/Function.h jni/Point.h
+ jni/AnimationRunner.h jni/BaseAnimation.h jni/Point.h jni/Function.h \
+ jni/LogHelper.h \
+ E:/android/android-ndk-r9d/platforms/android-19/arch-arm/usr/include/android/log.h
 
-jni/Ellipse.h:
+jni/Bezier.h:
 
 jni/CurveGraph.h:
 
@@ -817,6 +819,10 @@ jni/AnimationRunner.h:
 
 jni/BaseAnimation.h:
 
+jni/Point.h:
+
 jni/Function.h:
 
-jni/Point.h:
+jni/LogHelper.h:
+
+E:/android/android-ndk-r9d/platforms/android-19/arch-arm/usr/include/android/log.h:

@@ -18,6 +18,7 @@
 #include "Line.h"
 #include "Polygon.h"
 #include "Ellipse.h"
+#include "Bezier.h"
 
 static const int TOUCH_DOWN = 0;
 static const int TOUCH_UP = 1;
@@ -61,7 +62,12 @@ JNIEXPORT void JNICALL Java_com_cwq_jni_JNILib_initAssetManager(JNIEnv * env,
 //	points.push_back(Point(0.9f, 0));
 //	points.push_back(Point(0, 0.5f));
 
-	temp = new Ellipse(0.8, 0.3, 0, 0, M_PI_2*3, M_PI_4, false);
+//	temp = new MultiObject();
+//	((MultiObject*)temp)->addObject(new Bezier(Point(-0.45, 0), Point(0.7, 0.7), Point(0.3, 0), false));
+//	((MultiObject*)temp)->addObject(new Bezier(Point(-0.45, 0), Point(0.7, -0.7), Point(0.3, 0), false));
+
+	temp = new Bezier(Point(-0.45, 0), Point(0.7, 0.7), Point(0.3, 0), false);
+//	temp = new Ellipse(0.8, 0.3, 0, 0, M_PI_2*3, M_PI_4, false);
 //	temp = new Polygon(points);
 //	temp = new Line(Point(-0.8f, 0.8f), Point(0.8f, -1));
 	temp->setAlphaTo(0.5);
