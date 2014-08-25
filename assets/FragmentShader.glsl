@@ -13,12 +13,12 @@ void main() {
             && (v_changedPosition.y >= u_showVec4.y - u_showVec4.w)
             && (v_changedPosition.y <= u_showVec4.y + u_showVec4.w)) {
         gl_FragColor = texture2D(u_TextureUnit, v_TextureCoordinates);
-        if((gl_FragColor.a != 0.0))
-            gl_FragColor = gl_FragColor + u_color;
-        if((gl_FragColor.a != 0.0) && (u_color.w != 0.0))
+        if(gl_FragColor.a == 0.0)
+            discard;
+        gl_FragColor = gl_FragColor + u_color;
+        if(u_color.w != 0.0)
             gl_FragColor.a = u_color.w;
-        if((gl_FragColor.a != 0.0) 
-                && (v_originalPosition.x >= u_inVec4.x - u_inVec4.z)
+        if((v_originalPosition.x >= u_inVec4.x - u_inVec4.z)
                 && (v_originalPosition.x <= u_inVec4.x + u_inVec4.z)
                 && (v_originalPosition.y >= u_inVec4.y - u_inVec4.w)
                 && (v_originalPosition.y <= u_inVec4.y + u_inVec4.w))
