@@ -19,6 +19,7 @@
 #include "Polygon.h"
 #include "Ellipse.h"
 #include "Bezier.h"
+#include "TriangulatePolygon.h"
 
 static const int TOUCH_DOWN = 0;
 static const int TOUCH_UP = 1;
@@ -48,25 +49,37 @@ JNIEXPORT void JNICALL Java_com_cwq_jni_JNILib_initAssetManager(JNIEnv * env,
 			"");
 	cutRect = new CutRectangle(backRectTexture, upLayer);
 
-	std::list<Point> points;
-	double step = 2 * M_PI / 120;
-	for (double i = 0; i < M_PI + step; i += step) {
-		points.push_back(Point(cos(i) * 0.9, sin(i) * 0.9));
-	}
-	points.push_back(Point(0, -0.9f));
+//	std::list<Point> points;
+//	double step = 2 * M_PI / 120;
+//	for (double i = 0; i < M_PI + step; i += step) {
+//		points.push_back(Point(cos(i) * 0.9, sin(i) * 0.9));
+//	}
+//	points.push_back(Point(0, -0.9f));
 
-//	points.push_back(Point(0.9f, 0.9f));
-//	points.push_back(Point(-0.9f, 0.9f));
-//	points.push_back(Point(0, 0.1f));
-//	points.push_back(Point(-0.9f, -0.9f));
-//	points.push_back(Point(0.9f, 0));
-//	points.push_back(Point(0, 0.5f));
+	std::vector<Point> points;
+	points.push_back(Point(-0.9f, 0.9f));
+	points.push_back(Point(-0.9f, 0.0f));
+	points.push_back(Point(-0.5, 0.0f));
+	points.push_back(Point(-0.4f, 0.2f));
+	points.push_back(Point(-0.1f, 0.2f));
+	points.push_back(Point(0.3, 0.0f));
+	points.push_back(Point(0.6f, 0.0f));
+	points.push_back(Point(0.8f, 0.4f));
+	points.push_back(Point(0.3f, 0.4f));
+	points.push_back(Point(0.3f, 0.6f));
+	points.push_back(Point(0.5f, 0.6f));
+	points.push_back(Point(0.5f, 0.9f));
+	points.push_back(Point(-0.1f, 0.9f));
+	points.push_back(Point(-0.4f, 0.5f));
+	points.push_back(Point(-0.7f, 0.9f));
+
+	temp = new TriangulatePolygon(points);
 
 //	temp = new MultiObject();
 //	((MultiObject*)temp)->addObject(new Bezier(Point(-0.45, 0), Point(0.7, 0.7), Point(0.3, 0), false));
 //	((MultiObject*)temp)->addObject(new Bezier(Point(-0.45, 0), Point(0.7, -0.7), Point(0.3, 0), false));
 
-	temp = new Bezier(Point(-0.45, 0), Point(0.7, 0.7), Point(0.3, 0), false);
+//	temp = new Bezier(Point(-0.45, 0), Point(0.7, 0.7), Point(0.3, 0), false);
 //	temp = new Ellipse(0.8, 0.3, 0, 0, M_PI_2*3, M_PI_4, false);
 //	temp = new Polygon(points);
 //	temp = new Line(Point(-0.8f, 0.8f), Point(0.8f, -1));

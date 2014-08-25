@@ -242,7 +242,12 @@ obj/local/armeabi/objs/JNIEngine/com_cwq_jni_JNILib.o: \
  jni/FadeAnimation.h jni/ComplexAnimation.h jni/TintAnimation.h \
  jni/RotateAnimation.h jni/ScaleAnimation.h jni/Scene.h jni/ThreadLock.h \
  jni/CutRectangle.h jni/Line.h jni/LinearGraph.h jni/GraphObject.h \
- jni/Polygon.h jni/Ellipse.h jni/CurveGraph.h jni/Bezier.h
+ jni/Polygon.h jni/Ellipse.h jni/CurveGraph.h jni/Bezier.h \
+ jni/TriangulatePolygon.h \
+ E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/vector \
+ E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/stl/_vector.h \
+ E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/stl/_vector.c \
+ E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/stl/_bvector.h
 
 E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/time.h:
 
@@ -881,3 +886,13 @@ jni/Ellipse.h:
 jni/CurveGraph.h:
 
 jni/Bezier.h:
+
+jni/TriangulatePolygon.h:
+
+E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/vector:
+
+E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/stl/_vector.h:
+
+E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/stl/_vector.c:
+
+E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/stl/_bvector.h:

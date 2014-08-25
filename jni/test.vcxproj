@@ -243,6 +243,7 @@
     <ClInclude Include="TextureObject.h" />
     <ClInclude Include="ThreadLock.h" />
     <ClInclude Include="TintAnimation.h" />
+    <ClInclude Include="TriangulatePolygon.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AnimationRunner.cpp" />
@@ -277,6 +278,7 @@
     <ClCompile Include="TextureObject.cpp" />
     <ClCompile Include="ThreadLock.cpp" />
     <ClCompile Include="TintAnimation.cpp" />
+    <ClCompile Include="TriangulatePolygon.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="glm\detail\func_common.inl" />

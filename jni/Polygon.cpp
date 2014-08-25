@@ -11,8 +11,8 @@ Polygon::Polygon(std::list<Point> points, bool empty/* = true*/) {
 	float cy = 0;
 
 	std::list<Point>::iterator it = points.begin();
-	float tempX, tempY;
-	if (empty) {
+ 	float tempX, tempY;
+// 	if (empty) {
 		for (; it != points.end(); ++it) {
 			tempX = (*it).getX();
 			tempY = (*it).getY();
@@ -39,42 +39,42 @@ Polygon::Polygon(std::list<Point> points, bool empty/* = true*/) {
 			attribute[num++] = tempY;
 			attribute[num++] = 0;
 		}
-	} else {
-		//0 2 4 6 5 3 1
-		int index = 0;
-		for (; it != points.end(); ++it, ++num) {
-			tempX = (*it).getX();
-			tempY = (*it).getY();
-
-			if (tempX < minX) {
-				minX = tempX;
-			} else {
-				if (tempX > maxX) {
-					maxX = tempX;
-				}
-			}
-			if (tempY < minY) {
-				minY = tempY;
-			} else {
-				if (tempY > maxY) {
-					maxY = tempY;
-				}
-			}
-
-			cx += tempX;
-			cy += tempY;
-			
-			if (num * 2 < pointNum) {
-				index = num * 2;
-			} else {
-				index = (pointNum - num - 1) * 2 + 1;
-			}
-			index *= POINT_DIMENSION;
-			attribute[index++] = tempX;
-			attribute[index++] = tempY;
-			attribute[index] = 0;
-		}
-	}
+// 	} else {
+// 		//0 2 4 6 5 3 1
+// 		int index = 0;
+// 		for (; it != points.end(); ++it, ++num) {
+// 			tempX = (*it).getX();
+// 			tempY = (*it).getY();
+// 
+// 			if (tempX < minX) {
+// 				minX = tempX;
+// 			} else {
+// 				if (tempX > maxX) {
+// 					maxX = tempX;
+// 				}
+// 			}
+// 			if (tempY < minY) {
+// 				minY = tempY;
+// 			} else {
+// 				if (tempY > maxY) {
+// 					maxY = tempY;
+// 				}
+// 			}
+// 
+// 			cx += tempX;
+// 			cy += tempY;
+// 			
+// 			if (num * 2 < pointNum) {
+// 				index = num * 2;
+// 			} else {
+// 				index = (pointNum - num - 1) * 2 + 1;
+// 			}
+// 			index *= POINT_DIMENSION;
+// 			attribute[index++] = tempX;
+// 			attribute[index++] = tempY;
+// 			attribute[index] = 0;
+// 		}
+// 	}
 	
 	cx /= pointNum;
 	cy /= pointNum;
@@ -93,7 +93,7 @@ void Polygon::draw(OpenglESProgram* openglESProgram, double sElapsed) {
 	if (empty) {
 		GraphObject::draw(openglESProgram, sElapsed, GL_LINE_LOOP);
 	} else {
-		GraphObject::draw(openglESProgram, sElapsed, GL_TRIANGLE_STRIP);
+		GraphObject::draw(openglESProgram, sElapsed, GL_TRIANGLE_FAN);
 	}
 }
 
@@ -106,7 +106,7 @@ bool Polygon::isInObject(float x, float y) {
 
 	int index = 0;
 	Point end1, end2, end3;
-	if (empty) {
+//	if (empty) {
 		//过该点水平向左的射线与多边形交点数判断，奇数在内，偶数在外
 		int i, j = pointNum - 1;
 		bool isIn = false;
@@ -158,21 +158,21 @@ bool Polygon::isInObject(float x, float y) {
 // 			if (Function::inTriangle(p, end1, end2, end3))
 // 				return true;
 // 		}
-	} else {
-		for (int num = 0; num < pointNum - 2; ++num) {
-			//1
-			index = num * POINT_DIMENSION;
-			end1.set(attribute[index], attribute[index + 1]);
-			//2
-			index += POINT_DIMENSION;
-			end2.set(attribute[index], attribute[index + 1]);
-			//3
-			index += POINT_DIMENSION;
-			end3.set(attribute[index], attribute[index + 1]);
-
-			if (Function::inTriangle(p, end1, end2, end3))
-				return true;
-		}
-	}
-	return false;
+// 	} else {
+// 		for (int num = 0; num < pointNum - 2; ++num) {
+// 			//1
+// 			index = num * POINT_DIMENSION;
+// 			end1.set(attribute[index], attribute[index + 1]);
+// 			//2
+// 			index += POINT_DIMENSION;
+// 			end2.set(attribute[index], attribute[index + 1]);
+// 			//3
+// 			index += POINT_DIMENSION;
+// 			end3.set(attribute[index], attribute[index + 1]);
+// 
+// 			if (Function::inTriangle(p, end1, end2, end3))
+// 				return true;
+// 		}
+// 	}
+// 	return false;
 }

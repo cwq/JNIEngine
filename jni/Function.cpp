@@ -81,5 +81,19 @@ bool Function::inTriangleUseBarycenter(Point p, Point end1, Point end2, Point en
 }
 
 bool Function::inTriangle(Point p, Point end1, Point end2, Point end3) {
-	return inTriangleUseDirection(p, end1, end2, end3);
+	float ax, ay, bx, by, cx, cy, apx, apy, bpx, bpy, cpx, cpy;
+	float cCROSSap, bCROSScp, aCROSSbp;
+
+	ax = end3.getX() - end2.getX();  ay = end3.getY() - end2.getY();
+	bx = end1.getX() - end3.getX();  by = end1.getY() - end3.getY();
+	cx = end2.getX() - end1.getX();  cy = end2.getY() - end1.getY();
+	apx= p.getX() - end1.getX();  apy= p.getY() - end1.getY();
+	bpx= p.getX() - end2.getX();  bpy= p.getY() - end2.getY();
+	cpx= p.getX() - end3.getX();  cpy= p.getY() - end3.getY();
+
+	aCROSSbp = ax*bpy - ay*bpx;
+	cCROSSap = cx*apy - cy*apx;
+	bCROSScp = bx*cpy - by*cpx;
+
+	return ((aCROSSbp >= 0.0f) && (bCROSScp >= 0.0f) && (cCROSSap >= 0.0f));
 }

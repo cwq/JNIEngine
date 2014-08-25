@@ -1,4 +1,5 @@
-obj/local/armeabi/objs/JNIEngine/Scenecpp.o: jni/Scenecpp.cpp jni/Scene.h \
+obj/local/armeabi/objs/JNIEngine/TriangulatePolygon.o: \
+ jni/TriangulatePolygon.cpp jni/TriangulatePolygon.h \
  E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/list \
  E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/stl/_prolog.h \
  E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/stl/_cprolog.h \
@@ -84,13 +85,13 @@ obj/local/armeabi/objs/JNIEngine/Scenecpp.o: jni/Scenecpp.cpp jni/Scene.h \
  E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/stl/_relops_cont.h \
  E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/stl/_epilog.h \
  E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/stl/_config_compat_post.h \
- E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/time.h \
- E:/android/android-ndk-r9d/platforms/android-19/arch-arm/usr/include/../include/time.h \
- E:/android/android-ndk-r9d/platforms/android-19/arch-arm/usr/include/sys/time.h \
- E:/android/android-ndk-r9d/platforms/android-19/arch-arm/usr/include/linux/time.h \
- E:/android/android-ndk-r9d/platforms/android-19/arch-arm/usr/include/asm/siginfo.h \
- E:/android/android-ndk-r9d/platforms/android-19/arch-arm/usr/include/asm-generic/siginfo.h \
- jni/BaseObject.h jni/OpenglESProgram.h jni/OpenglESHelper.h \
+ E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/vector \
+ E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/stl/_vector.h \
+ E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/stl/_uninitialized.h \
+ E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/stl/_vector.c \
+ E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/stl/_bvector.h \
+ jni/LinearGraph.h jni/GraphObject.h jni/BaseObject.h \
+ jni/OpenglESProgram.h jni/OpenglESHelper.h \
  E:/android/android-ndk-r9d/platforms/android-19/arch-arm/usr/include/GLES2/gl2.h \
  E:/android/android-ndk-r9d/platforms/android-19/arch-arm/usr/include/GLES2/gl2platform.h \
  E:/android/android-ndk-r9d/platforms/android-19/arch-arm/usr/include/KHR/khrplatform.h \
@@ -105,6 +106,12 @@ obj/local/armeabi/objs/JNIEngine/Scenecpp.o: jni/Scenecpp.cpp jni/Scene.h \
  E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/setjmp.h \
  E:/android/android-ndk-r9d/platforms/android-19/arch-arm/usr/include/../include/setjmp.h \
  E:/android/android-ndk-r9d/platforms/android-19/arch-arm/usr/include/machine/setjmp.h \
+ E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/time.h \
+ E:/android/android-ndk-r9d/platforms/android-19/arch-arm/usr/include/../include/time.h \
+ E:/android/android-ndk-r9d/platforms/android-19/arch-arm/usr/include/sys/time.h \
+ E:/android/android-ndk-r9d/platforms/android-19/arch-arm/usr/include/linux/time.h \
+ E:/android/android-ndk-r9d/platforms/android-19/arch-arm/usr/include/asm/siginfo.h \
+ E:/android/android-ndk-r9d/platforms/android-19/arch-arm/usr/include/asm-generic/siginfo.h \
  jni/glm/glm.hpp jni/glm/detail/_fixes.hpp \
  E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/cmath \
  E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/cfloat \
@@ -182,7 +189,6 @@ obj/local/armeabi/objs/JNIEngine/Scenecpp.o: jni/Scenecpp.cpp jni/Scene.h \
  E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/stl/_string_fwd.h \
  E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/stl/_iosfwd.h \
  E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/stl/char_traits.h \
- E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/stl/_uninitialized.h \
  E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/stl/_string_base.h \
  E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/stl/_string_npos.h \
  E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/stl/_string_operators.h \
@@ -232,10 +238,9 @@ obj/local/armeabi/objs/JNIEngine/Scenecpp.o: jni/Scenecpp.cpp jni/Scene.h \
  E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/stl/_map.h \
  E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/stl/_tree.h \
  E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/stl/_tree.c \
- jni/AnimationRunner.h jni/BaseAnimation.h jni/ComOGLESProgram.h \
- jni/openglesprogram.h
+ jni/AnimationRunner.h jni/BaseAnimation.h jni/Point.h jni/Function.h
 
-jni/Scene.h:
+jni/TriangulatePolygon.h:
 
 E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/list:
 
@@ -407,17 +412,19 @@ E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/stl/_epilog.h:
 
 E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/stl/_config_compat_post.h:
 
-E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/time.h:
+E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/vector:
 
-E:/android/android-ndk-r9d/platforms/android-19/arch-arm/usr/include/../include/time.h:
+E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/stl/_vector.h:
 
-E:/android/android-ndk-r9d/platforms/android-19/arch-arm/usr/include/sys/time.h:
+E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/stl/_uninitialized.h:
 
-E:/android/android-ndk-r9d/platforms/android-19/arch-arm/usr/include/linux/time.h:
+E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/stl/_vector.c:
 
-E:/android/android-ndk-r9d/platforms/android-19/arch-arm/usr/include/asm/siginfo.h:
+E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/stl/_bvector.h:
 
-E:/android/android-ndk-r9d/platforms/android-19/arch-arm/usr/include/asm-generic/siginfo.h:
+jni/LinearGraph.h:
+
+jni/GraphObject.h:
 
 jni/BaseObject.h:
 
@@ -454,6 +461,18 @@ E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/setjmp.h:
 E:/android/android-ndk-r9d/platforms/android-19/arch-arm/usr/include/../include/setjmp.h:
 
 E:/android/android-ndk-r9d/platforms/android-19/arch-arm/usr/include/machine/setjmp.h:
+
+E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/time.h:
+
+E:/android/android-ndk-r9d/platforms/android-19/arch-arm/usr/include/../include/time.h:
+
+E:/android/android-ndk-r9d/platforms/android-19/arch-arm/usr/include/sys/time.h:
+
+E:/android/android-ndk-r9d/platforms/android-19/arch-arm/usr/include/linux/time.h:
+
+E:/android/android-ndk-r9d/platforms/android-19/arch-arm/usr/include/asm/siginfo.h:
+
+E:/android/android-ndk-r9d/platforms/android-19/arch-arm/usr/include/asm-generic/siginfo.h:
 
 jni/glm/glm.hpp:
 
@@ -721,8 +740,6 @@ E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/stl/_iosfwd.h:
 
 E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/stl/char_traits.h:
 
-E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/stl/_uninitialized.h:
-
 E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/stl/_string_base.h:
 
 E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/stl/_string_npos.h:
@@ -825,6 +842,6 @@ jni/AnimationRunner.h:
 
 jni/BaseAnimation.h:
 
-jni/ComOGLESProgram.h:
+jni/Point.h:
 
-jni/openglesprogram.h:
+jni/Function.h:
