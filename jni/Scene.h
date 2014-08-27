@@ -34,6 +34,9 @@ public:
 	inline float getHalfH() {
 		return openglESProgram->getHalfH();
 	}
+	inline OpenglESProgram* getOpenglESProgram() {
+		return openglESProgram;
+	}
 };
 
 #endif // !SCENE_H
