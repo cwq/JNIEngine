@@ -24,6 +24,9 @@ public:
 	inline void setTextureID(int texture) {
 		textureID = texture;
 	}
+	inline int getTextureID() {
+		return textureID;
+	}
 
 	void addTextureToManager();
 	void draw(OpenglESProgram* openglESProgram, double sElapsed);

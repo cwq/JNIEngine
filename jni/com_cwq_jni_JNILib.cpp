@@ -31,6 +31,7 @@ static bool isSave = false;
 static GLubyte* pixelBuffer = NULL;
 static GLuint frameBuffer;
 static GLuint textureID;
+static GLuint mTextureId = 0;
 
 JNIEXPORT void JNICALL Java_com_cwq_jni_JNILib_initAssetManager(JNIEnv * env,
 		jclass jthis, jobject assetManager) {
@@ -72,7 +73,6 @@ JNIEXPORT void JNICALL Java_com_cwq_jni_JNILib_onSurfaceCreated(JNIEnv * env,
 	LOGI(" %s", "Java_com_cwq_jni_JNILib_onSurfaceCreated 1");
 	scene->onSurfaceCreated();
 
-	glGenFramebuffers(1, &frameBuffer);
 	textureID = OpenglESHelper::createTexture("view1.png");
 
 	LOGI(" %s", "Java_com_cwq_jni_JNILib_onSurfaceCreated 2");
@@ -88,24 +88,15 @@ JNIEXPORT void JNICALL Java_com_cwq_jni_JNILib_onSurfaceChanged(JNIEnv * env,
 
 JNIEXPORT void JNICALL Java_com_cwq_jni_JNILib_onDrawFrame(JNIEnv * env,
 		jclass jthis) {
-/*	scene->onDrawFrame();*/
 	if (isSave) {
 		//
 		long s = clock();
 		//use created framebuffer
+		glGenFramebuffers(1, &frameBuffer);
 		glBindFramebuffer(GL_FRAMEBUFFER, frameBuffer);
 		glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, textureID, 0);
 		GLenum status = glCheckFramebufferStatus(GL_FRAMEBUFFER);
-		LOGI("glCheckFramebufferStatus: %i", status);
-
-// 		GLuint rboid;
-// 		glGenRenderbuffers(1, &rboid);
-// 		glBindRenderbuffer(GL_RENDERBUFFER, rboid);
-// 		glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT16, 200, 150);
-// 
-// 		glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, rboid);
-// 		status = glCheckFramebufferStatus(GL_FRAMEBUFFER);
-// 		LOGI("glCheckFramebufferStatus: %i", status);
+		LOGI("FBO: %i , glCheckFramebufferStatus: %i", frameBuffer, status);
 
 		//draw
 		glViewport(0,0,200,150);
@@ -121,7 +112,8 @@ JNIEXPORT void JNICALL Java_com_cwq_jni_JNILib_onDrawFrame(JNIEnv * env,
 		LOGI("%f s used glReadPixels", ((double)e - s) / CLOCKS_PER_SEC);
 		
 		// Creates a new OpenGL texture.
-		GLuint mTextureId;
+		if (mTextureId != 0)
+			glDeleteTextures(1, &mTextureId);
 		glGenTextures(1, &mTextureId);
 		glBindTexture(GL_TEXTURE_2D, mTextureId);
 		// Set-up texture properties.
@@ -142,9 +134,11 @@ JNIEXPORT void JNICALL Java_com_cwq_jni_JNILib_onDrawFrame(JNIEnv * env,
 		frame->setTextureID(mTextureId);
 		scene->onDrawFrame();
 
-		glDeleteTextures(1, &mTextureId);
-/*		glDeleteRenderbuffers(1, &rboid);*/
+/*		glDeleteTextures(1, &mTextureId);*/
 		glDeleteFramebuffers(1, &frameBuffer);
+		LOGI("mTextureId: %i", mTextureId);
+	} else {
+		scene->onDrawFrame();
 	}
 }
 
@@ -155,7 +149,7 @@ JNIEXPORT void JNICALL Java_com_cwq_jni_JNILib_onTouch(JNIEnv * env,
 
 JNIEXPORT void JNICALL Java_com_cwq_jni_JNILib_clickCut(JNIEnv * env,
 		jclass jthis) {
-
+	frame->setTextureID(0);
 }
 
 JNIEXPORT void JNICALL Java_com_cwq_jni_JNILib_clickReset(JNIEnv * env,
