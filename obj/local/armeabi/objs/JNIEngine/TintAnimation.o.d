@@ -46,8 +46,8 @@ obj/local/armeabi/objs/JNIEngine/TintAnimation.o: jni/TintAnimation.cpp \
  E:/android/android-ndk-r9d/platforms/android-19/arch-arm/usr/include/strings.h \
  E:/android/android-ndk-r9d/platforms/android-19/arch-arm/usr/include/memory.h \
  jni/GraphicsTexture.h jni/Resource.h \
- E:/android/android-ndk-r9d/platforms/android-19/arch-arm/usr/include/android/asset_manager.h \
- E:/android/android-ndk-r9d/platforms/android-19/arch-arm/usr/include/android/asset_manager_jni.h \
+ E:/androidsource/Android4.4/frameworks/native/include/android/asset_manager.h \
+ E:/androidsource/Android4.4/frameworks/native/include/android/asset_manager_jni.h \
  E:/android/android-ndk-r9d/platforms/android-19/arch-arm/usr/include/jni.h \
  E:/android/android-ndk-r9d/sources/libpng/png.h \
  E:/android/android-ndk-r9d/sources/libpng/pnglibconf.h \
@@ -333,9 +333,9 @@ jni/GraphicsTexture.h:
 
 jni/Resource.h:
 
-E:/android/android-ndk-r9d/platforms/android-19/arch-arm/usr/include/android/asset_manager.h:
+E:/androidsource/Android4.4/frameworks/native/include/android/asset_manager.h:
 
-E:/android/android-ndk-r9d/platforms/android-19/arch-arm/usr/include/android/asset_manager_jni.h:
+E:/androidsource/Android4.4/frameworks/native/include/android/asset_manager_jni.h:
 
 E:/android/android-ndk-r9d/platforms/android-19/arch-arm/usr/include/jni.h:
 

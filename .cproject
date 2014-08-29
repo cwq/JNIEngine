@@ -30,6 +30,7 @@
 							</builder>
 							<tool id="com.android.gcc.compiler.499194393" name="Android GCC Compiler" superClass="com.android.gcc.compiler">
 								<option id="com.android.gcc.option.includePath.1422739218" superClass="com.android.gcc.option.includePath" valueType="includePath">
+									<listOptionValue builtIn="false" value="&quot;E:\androidsource\Android4.4\frameworks\native\include&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;E:\android\android-ndk-r9d\sources\cxx-stl\stlport\stlport&quot;"/>
 								</option>
 								<inputType id="com.android.gcc.inputType.1842356335" superClass="com.android.gcc.inputType"/>
@@ -41,6 +42,7 @@
 							<targetPlatform binaryParser="org.eclipse.cdt.core.ELF" id="com.android.targetPlatform" isAbstract="false" superClass="com.android.targetPlatform"/>
 							<tool id="com.android.gcc.compiler.266988958" name="Android GCC Compiler" superClass="com.android.gcc.compiler.499194393">
 								<option id="com.android.gcc.option.includePath.352288856" superClass="com.android.gcc.option.includePath" valueType="includePath">
+									<listOptionValue builtIn="false" value="&quot;E:\androidsource\Android4.4\frameworks\native\include&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;E:\android\android-ndk-r9d\sources\cxx-stl\stlport\stlport&quot;"/>
 								</option>
 								<inputType id="com.android.gcc.inputType.493478538" superClass="com.android.gcc.inputType"/>

@@ -45,8 +45,8 @@ obj/local/armeabi/objs/JNIEngine/OpenglESHelper.o: jni/OpenglESHelper.cpp \
  E:/android/android-ndk-r9d/platforms/android-19/arch-arm/usr/include/strings.h \
  E:/android/android-ndk-r9d/platforms/android-19/arch-arm/usr/include/memory.h \
  jni/GraphicsTexture.h jni/Resource.h \
- E:/android/android-ndk-r9d/platforms/android-19/arch-arm/usr/include/android/asset_manager.h \
- E:/android/android-ndk-r9d/platforms/android-19/arch-arm/usr/include/android/asset_manager_jni.h \
+ E:/androidsource/Android4.4/frameworks/native/include/android/asset_manager.h \
+ E:/androidsource/Android4.4/frameworks/native/include/android/asset_manager_jni.h \
  E:/android/android-ndk-r9d/platforms/android-19/arch-arm/usr/include/jni.h \
  E:/android/android-ndk-r9d/sources/libpng/png.h \
  E:/android/android-ndk-r9d/sources/libpng/pnglibconf.h \
@@ -69,7 +69,7 @@ obj/local/armeabi/objs/JNIEngine/OpenglESHelper.o: jni/OpenglESHelper.cpp \
  E:/android/android-ndk-r9d/platforms/android-19/arch-arm/usr/include/asm/siginfo.h \
  E:/android/android-ndk-r9d/platforms/android-19/arch-arm/usr/include/asm-generic/siginfo.h \
  jni/LogHelper.h \
- E:/android/android-ndk-r9d/platforms/android-19/arch-arm/usr/include/android/log.h
+ E:/androidsource/Android4.4/system/core/include/android/log.h
 
 jni/OpenglESHelper.h:
 
@@ -165,9 +165,9 @@ jni/GraphicsTexture.h:
 
 jni/Resource.h:
 
-E:/android/android-ndk-r9d/platforms/android-19/arch-arm/usr/include/android/asset_manager.h:
+E:/androidsource/Android4.4/frameworks/native/include/android/asset_manager.h:
 
-E:/android/android-ndk-r9d/platforms/android-19/arch-arm/usr/include/android/asset_manager_jni.h:
+E:/androidsource/Android4.4/frameworks/native/include/android/asset_manager_jni.h:
 
 E:/android/android-ndk-r9d/platforms/android-19/arch-arm/usr/include/jni.h:
 
@@ -213,4 +213,4 @@ E:/android/android-ndk-r9d/platforms/android-19/arch-arm/usr/include/asm-generic
 
 jni/LogHelper.h:
 
-E:/android/android-ndk-r9d/platforms/android-19/arch-arm/usr/include/android/log.h:
+E:/androidsource/Android4.4/system/core/include/android/log.h:

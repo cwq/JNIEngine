@@ -1,4 +1,8 @@
 #include <time.h>
+#include <EGL/egl.h>
+#include <EGL/eglext.h>
+#include <ui/GraphicBuffer.h>
+#include <ui/PixelFormat.h>
 
 #include "com_cwq_jni_JNILib.h"
 
@@ -30,8 +34,12 @@ static RectangleTexture* frame = NULL;
 static bool isSave = false;
 static GLubyte* pixelBuffer = NULL;
 static GLuint frameBuffer;
-static GLuint textureID;
+static GLuint textureID = 0;
 static GLuint mTextureId = 0;
+
+static PFNEGLCREATEIMAGEKHRPROC _eglCreateImageKHR = NULL;
+static PFNEGLDESTROYIMAGEKHRPROC _eglDestroyImageKHR = NULL;
+static PFNGLEGLIMAGETARGETTEXTURE2DOESPROC _glEGLImageTargetTexture2DOES = NULL;
 
 JNIEXPORT void JNICALL Java_com_cwq_jni_JNILib_initAssetManager(JNIEnv * env,
 		jclass jthis, jobject assetManager) {
@@ -72,8 +80,16 @@ JNIEXPORT void JNICALL Java_com_cwq_jni_JNILib_onSurfaceCreated(JNIEnv * env,
 		jclass jthis) {
 	LOGI(" %s", "Java_com_cwq_jni_JNILib_onSurfaceCreated 1");
 	scene->onSurfaceCreated();
-
-	textureID = OpenglESHelper::createTexture("view1.png");
+	_eglCreateImageKHR = (PFNEGLCREATEIMAGEKHRPROC) eglGetProcAddress("eglCreateImageKHR");
+	_eglDestroyImageKHR = (PFNEGLDESTROYIMAGEKHRPROC) eglGetProcAddress("eglDestroyImageKHR");
+	_glEGLImageTargetTexture2DOES = (PFNGLEGLIMAGETARGETTEXTURE2DOESPROC)eglGetProcAddress("glEGLImageTargetTexture2DOES");	if(_eglCreateImageKHR == NULL ||
+		_eglDestroyImageKHR == NULL ||
+		_glEGLImageTargetTexture2DOES == NULL)
+	{
+		LOGE("EGLImage is not supported!\n");
+		exit(1);
+	}
+/*	textureID = OpenglESHelper::createTexture("view1.png");*/
 
 	LOGI(" %s", "Java_com_cwq_jni_JNILib_onSurfaceCreated 2");
 }
@@ -89,7 +105,45 @@ JNIEXPORT void JNICALL Java_com_cwq_jni_JNILib_onSurfaceChanged(JNIEnv * env,
 JNIEXPORT void JNICALL Java_com_cwq_jni_JNILib_onDrawFrame(JNIEnv * env,
 		jclass jthis) {
 	if (isSave) {
-		//
+		//EGLImageKHR
+		android::GraphicBuffer* buffer = new android::GraphicBuffer(200, 150, android::PIXEL_FORMAT_RGBA_8888,
+			android::GraphicBuffer::USAGE_HW_TEXTURE |
+			android::GraphicBuffer::USAGE_HW_2D |
+			android::GraphicBuffer::USAGE_SW_READ_OFTEN |
+			android::GraphicBuffer::USAGE_SW_WRITE_OFTEN);
+
+		android::status_t err = buffer->initCheck();
+		if (err != android::NO_ERROR)
+		{
+			LOGE("GraphicBuffer creation failed! Err:%s\n", strerror(-err));
+		}
+
+		android_native_buffer_t* anb = buffer->getNativeBuffer();
+		// Convert the native buffer handle onto the commonly used EGL handle.
+		EGLClientBuffer nativeBufferHandle = (EGLClientBuffer)anb;
+
+		EGLint eglImgAttrs[] = { EGL_IMAGE_PRESERVED_KHR, EGL_TRUE, EGL_NONE, EGL_NONE };
+		EGLImageKHR image = _eglCreateImageKHR(eglGetCurrentDisplay(), EGL_NO_CONTEXT, EGL_NATIVE_BUFFER_ANDROID, nativeBufferHandle, eglImgAttrs);
+		/* Check EGL errors */
+		EGLint egl_error = eglGetError();
+		if(egl_error != EGL_SUCCESS)
+		{
+			LOGE("eglCreateImageKHR failed! Error: %X\n", egl_error);
+			exit(1);
+		}
+
+		if (textureID != 0)
+			glDeleteTextures(1, &textureID);
+		glGenTextures(1, &textureID);
+		glBindTexture(GL_TEXTURE_2D, textureID);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+		_glEGLImageTargetTexture2DOES(GL_TEXTURE_2D, image);
+		glGenerateMipmap(GL_TEXTURE_2D);
+		glBindTexture(GL_TEXTURE_2D, 0);
+		LOGI("textureID: %i ", textureID);
+
+		//glReadPixels
 		long s = clock();
 		//use created framebuffer
 		glGenFramebuffers(1, &frameBuffer);

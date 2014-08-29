@@ -151,8 +151,8 @@ obj/local/armeabi/objs/JNIEngine/TextureObject.o: jni/TextureObject.cpp \
  E:/android/android-ndk-r9d/platforms/android-19/arch-arm/usr/include/KHR/khrplatform.h \
  E:/android/android-ndk-r9d/platforms/android-19/arch-arm/usr/include/GLES2/gl2ext.h \
  jni/GraphicsTexture.h jni/Resource.h \
- E:/android/android-ndk-r9d/platforms/android-19/arch-arm/usr/include/android/asset_manager.h \
- E:/android/android-ndk-r9d/platforms/android-19/arch-arm/usr/include/android/asset_manager_jni.h \
+ E:/androidsource/Android4.4/frameworks/native/include/android/asset_manager.h \
+ E:/androidsource/Android4.4/frameworks/native/include/android/asset_manager_jni.h \
  E:/android/android-ndk-r9d/platforms/android-19/arch-arm/usr/include/jni.h \
  E:/android/android-ndk-r9d/sources/libpng/png.h \
  E:/android/android-ndk-r9d/sources/libpng/pnglibconf.h \
@@ -230,7 +230,7 @@ obj/local/armeabi/objs/JNIEngine/TextureObject.o: jni/TextureObject.cpp \
  E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/stl/_tree.c \
  E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/stl/_relops_cont.h \
  jni/AnimationRunner.h jni/BaseAnimation.h jni/LogHelper.h \
- E:/android/android-ndk-r9d/platforms/android-19/arch-arm/usr/include/android/log.h
+ E:/androidsource/Android4.4/system/core/include/android/log.h
 
 jni/TextureObject.h:
 
@@ -542,9 +542,9 @@ jni/GraphicsTexture.h:
 
 jni/Resource.h:
 
-E:/android/android-ndk-r9d/platforms/android-19/arch-arm/usr/include/android/asset_manager.h:
+E:/androidsource/Android4.4/frameworks/native/include/android/asset_manager.h:
 
-E:/android/android-ndk-r9d/platforms/android-19/arch-arm/usr/include/android/asset_manager_jni.h:
+E:/androidsource/Android4.4/frameworks/native/include/android/asset_manager_jni.h:
 
 E:/android/android-ndk-r9d/platforms/android-19/arch-arm/usr/include/jni.h:
 
@@ -816,4 +816,4 @@ jni/BaseAnimation.h:
 
 jni/LogHelper.h:
 
-E:/android/android-ndk-r9d/platforms/android-19/arch-arm/usr/include/android/log.h:
+E:/androidsource/Android4.4/system/core/include/android/log.h:

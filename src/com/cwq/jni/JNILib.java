@@ -4,6 +4,7 @@ import android.content.res.AssetManager;
 
 public class JNILib {
 	static {
+//		System.loadLibrary("stlport_shared");
         System.loadLibrary("JNIEngine");
     }
 	

@@ -1,6 +1,6 @@
 obj/local/armeabi/objs/JNIEngine/GraphicsTexture.o: \
  jni/GraphicsTexture.cpp jni/GraphicsTexture.h jni/Resource.h \
- E:/android/android-ndk-r9d/platforms/android-19/arch-arm/usr/include/android/asset_manager.h \
+ E:/androidsource/Android4.4/frameworks/native/include/android/asset_manager.h \
  E:/android/android-ndk-r9d/platforms/android-19/arch-arm/usr/include/sys/types.h \
  E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/stddef.h \
  E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/stl/_cprolog.h \
@@ -30,7 +30,7 @@ obj/local/armeabi/objs/JNIEngine/GraphicsTexture.o: \
  E:/android/android-ndk-r9d/platforms/android-19/arch-arm/usr/include/linux/types.h \
  E:/android/android-ndk-r9d/platforms/android-19/arch-arm/usr/include/machine/kernel.h \
  E:/android/android-ndk-r9d/platforms/android-19/arch-arm/usr/include/sys/sysmacros.h \
- E:/android/android-ndk-r9d/platforms/android-19/arch-arm/usr/include/android/asset_manager_jni.h \
+ E:/androidsource/Android4.4/frameworks/native/include/android/asset_manager_jni.h \
  E:/android/android-ndk-r9d/platforms/android-19/arch-arm/usr/include/jni.h \
  E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/stdarg.h \
  E:/android/android-ndk-r9d/platforms/android-19/arch-arm/usr/include/GLES2/gl2.h \
@@ -63,7 +63,7 @@ jni/GraphicsTexture.h:
 
 jni/Resource.h:
 
-E:/android/android-ndk-r9d/platforms/android-19/arch-arm/usr/include/android/asset_manager.h:
+E:/androidsource/Android4.4/frameworks/native/include/android/asset_manager.h:
 
 E:/android/android-ndk-r9d/platforms/android-19/arch-arm/usr/include/sys/types.h:
 
@@ -123,7 +123,7 @@ E:/android/android-ndk-r9d/platforms/android-19/arch-arm/usr/include/machine/ker
 
 E:/android/android-ndk-r9d/platforms/android-19/arch-arm/usr/include/sys/sysmacros.h:
 
-E:/android/android-ndk-r9d/platforms/android-19/arch-arm/usr/include/android/asset_manager_jni.h:
+E:/androidsource/Android4.4/frameworks/native/include/android/asset_manager_jni.h:
 
 E:/android/android-ndk-r9d/platforms/android-19/arch-arm/usr/include/jni.h:
 
