@@ -283,7 +283,13 @@ obj/local/armeabi/objs/JNIEngine/com_cwq_jni_JNILib.o: \
  E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/vector \
  E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/stl/_vector.h \
  E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/stl/_vector.c \
- E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/stl/_bvector.h
+ E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/stl/_bvector.h \
+ jni/lodepng.h \
+ E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/fstream \
+ E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/stl/_ioserr.h \
+ E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/stl/_fstream.h \
+ E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/stl/_codecvt.h \
+ E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/stl/_fstream.c
 
 E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/time.h:
 
@@ -1004,3 +1010,15 @@ E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/stl/_vector.h:
 E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/stl/_vector.c:
 
 E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/stl/_bvector.h:
+
+jni/lodepng.h:
+
+E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/fstream:
+
+E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/stl/_ioserr.h:
+
+E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/stl/_fstream.h:
+
+E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/stl/_codecvt.h:
+
+E:/android/android-ndk-r9d/sources/cxx-stl/stlport/stlport/stl/_fstream.c:

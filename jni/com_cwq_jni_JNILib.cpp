@@ -25,6 +25,8 @@
 #include "Bezier.h"
 #include "TriangulatePolygon.h"
 
+#include "lodepng.h"
+
 static Scene* scene = NULL;
 static BaseObject* temp = NULL;
 
@@ -66,8 +68,8 @@ JNIEXPORT void JNICALL Java_com_cwq_jni_JNILib_initAssetManager(JNIEnv * env,
 	points.push_back(Point(-0.7f, 0.9f));
 
 	temp = new TriangulatePolygon(points);
-	temp->setAlphaTo(0.5);
-	temp->setColor(1, 0, 0, 0.5);
+	temp->setAlphaTo(1);
+	temp->setColor(1, 0, 0, 1);
 
 	frame = new RectangleTexture(0.0f, 0.0f,
 		0.8 * 2, 0.6 * 2,
@@ -106,7 +108,7 @@ JNIEXPORT void JNICALL Java_com_cwq_jni_JNILib_onDrawFrame(JNIEnv * env,
 		jclass jthis) {
 	if (isSave) {
 		//EGLImageKHR
-		android::GraphicBuffer* buffer = new android::GraphicBuffer(200, 150, android::PIXEL_FORMAT_RGBA_8888,
+		android::GraphicBuffer* buffer = new android::GraphicBuffer(256, 256, android::PIXEL_FORMAT_RGBA_8888,
 			android::GraphicBuffer::USAGE_HW_TEXTURE |
 			android::GraphicBuffer::USAGE_HW_2D |
 			android::GraphicBuffer::USAGE_SW_READ_OFTEN |
@@ -117,6 +119,13 @@ JNIEXPORT void JNICALL Java_com_cwq_jni_JNILib_onDrawFrame(JNIEnv * env,
 		{
 			LOGE("GraphicBuffer creation failed! Err:%s\n", strerror(-err));
 		}
+
+		LOGI("w:%i, h:%i", buffer->getWidth(), buffer->getHeight());
+
+ 		unsigned char* bits = NULL;
+// 		buffer->lock(android::GraphicBuffer::USAGE_SW_WRITE_OFTEN, (void**)&bits);
+// 		memcpy(bits, imagebuf, 250*150*4);
+// 		buffer->unlock();
 
 		android_native_buffer_t* anb = buffer->getNativeBuffer();
 		// Convert the native buffer handle onto the commonly used EGL handle.
@@ -132,15 +141,22 @@ JNIEXPORT void JNICALL Java_com_cwq_jni_JNILib_onDrawFrame(JNIEnv * env,
 			exit(1);
 		}
 
+		/* If eglCreateImageKHR returned no image exit the app */
+		if(image == EGL_NO_IMAGE_KHR)
+		{
+			LOGE("eglCreateImageKHR returned no image!\n");
+			exit(1);
+		}
+
 		if (textureID != 0)
 			glDeleteTextures(1, &textureID);
 		glGenTextures(1, &textureID);
 		glBindTexture(GL_TEXTURE_2D, textureID);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+// 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+// 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 		_glEGLImageTargetTexture2DOES(GL_TEXTURE_2D, image);
-		glGenerateMipmap(GL_TEXTURE_2D);
-		glBindTexture(GL_TEXTURE_2D, 0);
+/* 		glGenerateMipmap(GL_TEXTURE_2D);*/
+// 		glBindTexture(GL_TEXTURE_2D, 0);
 		LOGI("textureID: %i ", textureID);
 
 		//glReadPixels
@@ -153,31 +169,44 @@ JNIEXPORT void JNICALL Java_com_cwq_jni_JNILib_onDrawFrame(JNIEnv * env,
 		LOGI("FBO: %i , glCheckFramebufferStatus: %i", frameBuffer, status);
 
 		//draw
-		glViewport(0,0,200,150);
+		glViewport(0,0,256,256);
 		temp->draw(scene->getOpenglESProgram(), 0);
+		glFinish();
 
 		//read pixels
-		long e = clock();
-		LOGI("%f s used Framebuffer", ((double)e - s) / CLOCKS_PER_SEC);
-		pixelBuffer = (GLubyte*)malloc(200*150*4);
-		s = clock();
-		glReadPixels(0, 0, 200, 150, GL_RGBA, GL_UNSIGNED_BYTE, pixelBuffer);
-		e = clock();
-		LOGI("%f s used glReadPixels", ((double)e - s) / CLOCKS_PER_SEC);
+// 		long e = clock();
+// 		LOGI("%f s used Framebuffer", ((double)e - s) / CLOCKS_PER_SEC);
+// 		pixelBuffer = (GLubyte*)malloc(256*256*4);
+// 		s = clock();
+// 		glReadPixels(0, 0, 256, 256, GL_RGBA, GL_UNSIGNED_BYTE, pixelBuffer);
+// 		e = clock();
+// 		LOGI("%f s used glReadPixels", ((double)e - s) / CLOCKS_PER_SEC);
 		
 		// Creates a new OpenGL texture.
-		if (mTextureId != 0)
-			glDeleteTextures(1, &mTextureId);
-		glGenTextures(1, &mTextureId);
-		glBindTexture(GL_TEXTURE_2D, mTextureId);
-		// Set-up texture properties.
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-		// Loads image data into OpenGL.
-		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, 200, 150, 0,
-			GL_RGBA, GL_UNSIGNED_BYTE, pixelBuffer);
-		glGenerateMipmap(GL_TEXTURE_2D);
-		glBindTexture(GL_TEXTURE_2D, 0);
+// 		if (mTextureId != 0)
+// 			glDeleteTextures(1, &mTextureId);
+// 		glGenTextures(1, &mTextureId);
+// 		glBindTexture(GL_TEXTURE_2D, mTextureId);
+// 		// Set-up texture properties.
+// 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+// 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+// 		// Loads image data into OpenGL.
+// 		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, 256, 256, 0,
+// 			GL_RGBA, GL_UNSIGNED_BYTE, imagebuf);
+// 		glGenerateMipmap(GL_TEXTURE_2D);
+// 		glBindTexture(GL_TEXTURE_2D, 0);
+
+// 		buffer->lock(android::GraphicBuffer::USAGE_SW_WRITE_OFTEN, (void**)&bits);
+// 		memcpy(bits, pixelBuffer, 256*256*4);
+// 		buffer->unlock();
+
+/*		void* bits = NULL;*/
+		buffer->lock(android::GraphicBuffer::USAGE_SW_READ_OFTEN, (void**)&bits);
+// 		pixelBuffer = (GLubyte*)malloc(256*256*4);
+// 		memcpy(pixelBuffer, bits, 256*256*4);
+		buffer->unlock();
+		int result = LodePNG_encode32_file("/mnt/sdcard/JNIEngine/test.png", bits, 256, 256);
+		LOGI("LodePNG_encode32_file :%i", result);
 
 		isSave = false;
 		free(pixelBuffer);
@@ -185,12 +214,13 @@ JNIEXPORT void JNICALL Java_com_cwq_jni_JNILib_onDrawFrame(JNIEnv * env,
 		glBindFramebuffer(GL_FRAMEBUFFER, 0);
 		glViewport(0, 0, w, h);
 
-		frame->setTextureID(mTextureId);
+		frame->setTextureID(textureID);
 		scene->onDrawFrame();
 
 /*		glDeleteTextures(1, &mTextureId);*/
+		_eglDestroyImageKHR(eglGetCurrentDisplay(), image);
 		glDeleteFramebuffers(1, &frameBuffer);
-		LOGI("mTextureId: %i", mTextureId);
+		LOGI("mTextureId: %i", textureID);
 	} else {
 		scene->onDrawFrame();
 	}
