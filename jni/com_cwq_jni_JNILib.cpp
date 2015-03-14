@@ -1,8 +1,4 @@
 #include <time.h>
-#include <EGL/egl.h>
-#include <EGL/eglext.h>
-#include <ui/GraphicBuffer.h>
-#include <ui/PixelFormat.h>
 
 #include "com_cwq_jni_JNILib.h"
 
@@ -25,23 +21,20 @@
 #include "Bezier.h"
 #include "TriangulatePolygon.h"
 
-#include "lodepng.h"
+static const int TOUCH_DOWN = 0;
+static const int TOUCH_UP = 1;
+static const int TOUCH_MOVE = 2;
 
 static Scene* scene = NULL;
+static CutRectangle* cutRect = NULL;
+static RectangleTexture* backRectTexture = NULL;
+static RectangleTexture* upLayer = NULL;
 static BaseObject* temp = NULL;
-
-static int w;
-static int h;
-static RectangleTexture* frame = NULL;
-static bool isSave = false;
-static GLubyte* pixelBuffer = NULL;
-static GLuint frameBuffer;
-static GLuint textureID = 0;
-static GLuint mTextureId = 0;
-
-static PFNEGLCREATEIMAGEKHRPROC _eglCreateImageKHR = NULL;
-static PFNEGLDESTROYIMAGEKHRPROC _eglDestroyImageKHR = NULL;
-static PFNGLEGLIMAGETARGETTEXTURE2DOESPROC _glEGLImageTargetTexture2DOES = NULL;
+static float downX = 0;
+static float downY = 0;
+static bool isIn = false;
+static float lastx = 0;
+static float lasty = 0;
 
 JNIEXPORT void JNICALL Java_com_cwq_jni_JNILib_initAssetManager(JNIEnv * env,
 		jclass jthis, jobject assetManager) {
@@ -50,31 +43,53 @@ JNIEXPORT void JNICALL Java_com_cwq_jni_JNILib_initAssetManager(JNIEnv * env,
 
 	scene = new Scene();
 
-	std::vector<Point> points;
-	points.push_back(Point(-0.9f, 0.9f));
-	points.push_back(Point(-0.9f, 0.0f));
-	points.push_back(Point(-0.5, 0.0f));
-	points.push_back(Point(-0.4f, 0.2f));
-	points.push_back(Point(-0.1f, 0.2f));
-	points.push_back(Point(0.3, 0.0f));
-	points.push_back(Point(0.6f, 0.0f));
-	points.push_back(Point(0.8f, 0.4f));
-	points.push_back(Point(0.3f, 0.4f));
-	points.push_back(Point(0.3f, 0.6f));
-	points.push_back(Point(0.5f, 0.6f));
-	points.push_back(Point(0.5f, 0.9f));
-	points.push_back(Point(-0.1f, 0.9f));
-	points.push_back(Point(-0.4f, 0.5f));
-	points.push_back(Point(-0.7f, 0.9f));
+	backRectTexture = new RectangleTexture("view1.png");
+	upLayer = new RectangleTexture(0.0f, 0.0f,
+			backRectTexture->getHalfW() * 2, backRectTexture->getHalfH() * 2,
+			"");
+	cutRect = new CutRectangle(backRectTexture, upLayer);
 
-	temp = new TriangulatePolygon(points);
-	temp->setAlphaTo(1);
-	temp->setColor(1, 0, 0, 1);
+//	std::list<Point> points;
+//	double step = 2 * M_PI / 120;
+//	for (double i = 0; i < M_PI + step; i += step) {
+//		points.push_back(Point(cos(i) * 0.9, sin(i) * 0.9));
+//	}
+//	points.push_back(Point(0, -0.9f));
 
-	frame = new RectangleTexture(0.0f, 0.0f,
-		0.8 * 2, 0.6 * 2,
-		"");
-	scene->addObj(frame);
+//	std::vector<Point> points;
+//	points.push_back(Point(-0.9f, 0.9f));
+//	points.push_back(Point(-0.9f, 0.0f));
+//	points.push_back(Point(-0.5, 0.0f));
+//	points.push_back(Point(-0.4f, 0.2f));
+//	points.push_back(Point(-0.1f, 0.2f));
+//	points.push_back(Point(0.3, 0.0f));
+//	points.push_back(Point(0.6f, 0.0f));
+//	points.push_back(Point(0.8f, 0.4f));
+//	points.push_back(Point(0.3f, 0.4f));
+//	points.push_back(Point(0.3f, 0.6f));
+//	points.push_back(Point(0.5f, 0.6f));
+//	points.push_back(Point(0.5f, 0.9f));
+//	points.push_back(Point(-0.1f, 0.9f));
+//	points.push_back(Point(-0.4f, 0.5f));
+//	points.push_back(Point(-0.7f, 0.9f));
+//
+//	temp = new TriangulatePolygon(points);
+
+//	temp = new MultiObject();
+//	((MultiObject*)temp)->addObject(new Bezier(Point(-0.45, 0), Point(0.7, 0.7), Point(0.3, 0), false));
+//	((MultiObject*)temp)->addObject(new Bezier(Point(-0.45, 0), Point(0.7, -0.7), Point(0.3, 0), false));
+
+//	temp = new Bezier(Point(-0.45, 0), Point(0.7, 0.7), Point(0.3, 0), false);
+//	temp = new Ellipse(0.8, 0.3, 0, 0, M_PI_2*3, M_PI_4, false);
+//	temp = new Polygon(points);
+//	temp = new Line(Point(-0.8f, 0.8f), Point(0.8f, -1));
+//	temp->setAlphaTo(0.5);
+//	temp->setColor(1, 0, 0, 0.5);
+//	scene->addObj(temp, 40);
+
+	scene->addObj(cutRect, 30);
+	scene->addObj(upLayer, 20);
+	scene->addObj(backRectTexture, 10);
 	LOGI(" %s", "Java_com_cwq_jni_JNILib_initAssetManager");
 }
 
@@ -82,162 +97,122 @@ JNIEXPORT void JNICALL Java_com_cwq_jni_JNILib_onSurfaceCreated(JNIEnv * env,
 		jclass jthis) {
 	LOGI(" %s", "Java_com_cwq_jni_JNILib_onSurfaceCreated 1");
 	scene->onSurfaceCreated();
-	_eglCreateImageKHR = (PFNEGLCREATEIMAGEKHRPROC) eglGetProcAddress("eglCreateImageKHR");
-	_eglDestroyImageKHR = (PFNEGLDESTROYIMAGEKHRPROC) eglGetProcAddress("eglDestroyImageKHR");
-	_glEGLImageTargetTexture2DOES = (PFNGLEGLIMAGETARGETTEXTURE2DOESPROC)eglGetProcAddress("glEGLImageTargetTexture2DOES");	if(_eglCreateImageKHR == NULL ||
-		_eglDestroyImageKHR == NULL ||
-		_glEGLImageTargetTexture2DOES == NULL)
-	{
-		LOGE("EGLImage is not supported!\n");
-		exit(1);
-	}
-/*	textureID = OpenglESHelper::createTexture("view1.png");*/
+
+//	BaseAnimation* move = MoveAnimation::move(2, Point(0, 0), Point(1, 1));
+//	move->setRevert(true);
+//
+//	BaseAnimation* fadeOut = FadeAnimation::fade(2.0f, 1, 0);
+//	fadeOut->setRevert(true);
+//
+//	BaseAnimation* fadeIn = FadeAnimation::fade(2.0f, 0, 1);
+//
+//	BaseAnimation* rotateAnimation = RotateAnimation::rotate(2.0f,
+//			temp->getRotateMatrix(), 360, 1, 1, 1);
+//	rotateAnimation->setRevert(true);
+//
+//	BaseAnimation* tint = TintAnimation::tint(2.0f, temp->getColor(), 0, 1, 0, 1);
+//	tint->setRevert(true);
+//
+//	BaseAnimation* scaleS = ScaleAnimation::scale(2.0f, 1, 0, 1, 0);
+//	scaleS->setRevert(true);
+//
+//	BaseAnimation* scaleB = ScaleAnimation::scale(2.0f, 0, 1, 0, 1);
+//
+//	ComplexAnimation* c1 = new ComplexAnimation(2.0f);
+//	c1->setRevert(true);
+//	c1->addAnimation(scaleS);
+//	c1->addAnimation(fadeOut);
+//	c1->addAnimation(rotateAnimation);
+//	temp->setAnimation(rotateAnimation);
+
+//	ComplexAnimation* c2 = new ComplexAnimation(2.0f);
+//	c2->setRevert(false);
+//	c2->addAnimation(scaleB);
+//	c2->addAnimation(fadeIn);
+//	c2->addAnimation(rotateAnimation);
+//
+//	ComplexAnimation* c3 = new ComplexAnimation(2.0f);
+//	c3->setRevert(true);
+//	c3->addAnimation(move);
+//	c3->addAnimation(tint);
+//	c3->addAnimation(rotateAnimation);
 
 	LOGI(" %s", "Java_com_cwq_jni_JNILib_onSurfaceCreated 2");
 }
 
 JNIEXPORT void JNICALL Java_com_cwq_jni_JNILib_onSurfaceChanged(JNIEnv * env,
 		jclass jthis, jint width, jint height) {
-	w = width;
-	h = height;
 	scene->onSurfaceChanged(width, height);
 	LOGI(" %s", "Java_com_cwq_jni_JNILib_onSurfaceChanged");
 }
 
 JNIEXPORT void JNICALL Java_com_cwq_jni_JNILib_onDrawFrame(JNIEnv * env,
 		jclass jthis) {
-	if (isSave) {
-		//EGLImageKHR
-		android::GraphicBuffer* buffer = new android::GraphicBuffer(256, 256, android::PIXEL_FORMAT_RGBA_8888,
-			android::GraphicBuffer::USAGE_HW_TEXTURE |
-			android::GraphicBuffer::USAGE_HW_2D |
-			android::GraphicBuffer::USAGE_SW_READ_OFTEN |
-			android::GraphicBuffer::USAGE_SW_WRITE_OFTEN);
-
-		android::status_t err = buffer->initCheck();
-		if (err != android::NO_ERROR)
-		{
-			LOGE("GraphicBuffer creation failed! Err:%s\n", strerror(-err));
-		}
-
-		LOGI("w:%i, h:%i", buffer->getWidth(), buffer->getHeight());
-
- 		unsigned char* bits = NULL;
-// 		buffer->lock(android::GraphicBuffer::USAGE_SW_WRITE_OFTEN, (void**)&bits);
-// 		memcpy(bits, imagebuf, 250*150*4);
-// 		buffer->unlock();
-
-		android_native_buffer_t* anb = buffer->getNativeBuffer();
-		// Convert the native buffer handle onto the commonly used EGL handle.
-		EGLClientBuffer nativeBufferHandle = (EGLClientBuffer)anb;
-
-		EGLint eglImgAttrs[] = { EGL_IMAGE_PRESERVED_KHR, EGL_TRUE, EGL_NONE, EGL_NONE };
-		EGLImageKHR image = _eglCreateImageKHR(eglGetCurrentDisplay(), EGL_NO_CONTEXT, EGL_NATIVE_BUFFER_ANDROID, nativeBufferHandle, eglImgAttrs);
-		/* Check EGL errors */
-		EGLint egl_error = eglGetError();
-		if(egl_error != EGL_SUCCESS)
-		{
-			LOGE("eglCreateImageKHR failed! Error: %X\n", egl_error);
-			exit(1);
-		}
-
-		/* If eglCreateImageKHR returned no image exit the app */
-		if(image == EGL_NO_IMAGE_KHR)
-		{
-			LOGE("eglCreateImageKHR returned no image!\n");
-			exit(1);
-		}
-
-		if (textureID != 0)
-			glDeleteTextures(1, &textureID);
-		glGenTextures(1, &textureID);
-		glBindTexture(GL_TEXTURE_2D, textureID);
-// 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
-// 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-		_glEGLImageTargetTexture2DOES(GL_TEXTURE_2D, image);
-/* 		glGenerateMipmap(GL_TEXTURE_2D);*/
-// 		glBindTexture(GL_TEXTURE_2D, 0);
-		LOGI("textureID: %i ", textureID);
-
-		//glReadPixels
-		long s = clock();
-		//use created framebuffer
-		glGenFramebuffers(1, &frameBuffer);
-		glBindFramebuffer(GL_FRAMEBUFFER, frameBuffer);
-		glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, textureID, 0);
-		GLenum status = glCheckFramebufferStatus(GL_FRAMEBUFFER);
-		LOGI("FBO: %i , glCheckFramebufferStatus: %i", frameBuffer, status);
-
-		//draw
-		glViewport(0,0,256,256);
-		temp->draw(scene->getOpenglESProgram(), 0);
-		glFinish();
-
-		//read pixels
-// 		long e = clock();
-// 		LOGI("%f s used Framebuffer", ((double)e - s) / CLOCKS_PER_SEC);
-// 		pixelBuffer = (GLubyte*)malloc(256*256*4);
-// 		s = clock();
-// 		glReadPixels(0, 0, 256, 256, GL_RGBA, GL_UNSIGNED_BYTE, pixelBuffer);
-// 		e = clock();
-// 		LOGI("%f s used glReadPixels", ((double)e - s) / CLOCKS_PER_SEC);
-		
-		// Creates a new OpenGL texture.
-// 		if (mTextureId != 0)
-// 			glDeleteTextures(1, &mTextureId);
-// 		glGenTextures(1, &mTextureId);
-// 		glBindTexture(GL_TEXTURE_2D, mTextureId);
-// 		// Set-up texture properties.
-// 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
-// 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-// 		// Loads image data into OpenGL.
-// 		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, 256, 256, 0,
-// 			GL_RGBA, GL_UNSIGNED_BYTE, imagebuf);
-// 		glGenerateMipmap(GL_TEXTURE_2D);
-// 		glBindTexture(GL_TEXTURE_2D, 0);
-
-// 		buffer->lock(android::GraphicBuffer::USAGE_SW_WRITE_OFTEN, (void**)&bits);
-// 		memcpy(bits, pixelBuffer, 256*256*4);
-// 		buffer->unlock();
-
-/*		void* bits = NULL;*/
-		buffer->lock(android::GraphicBuffer::USAGE_SW_READ_OFTEN, (void**)&bits);
-// 		pixelBuffer = (GLubyte*)malloc(256*256*4);
-// 		memcpy(pixelBuffer, bits, 256*256*4);
-		buffer->unlock();
-		int result = LodePNG_encode32_file("/mnt/sdcard/JNIEngine/test.png", bits, 256, 256);
-		LOGI("LodePNG_encode32_file :%i", result);
-
-		isSave = false;
-		free(pixelBuffer);
-		//use system default framebuffer
-		glBindFramebuffer(GL_FRAMEBUFFER, 0);
-		glViewport(0, 0, w, h);
-
-		frame->setTextureID(textureID);
-		scene->onDrawFrame();
-
-/*		glDeleteTextures(1, &mTextureId);*/
-		_eglDestroyImageKHR(eglGetCurrentDisplay(), image);
-		glDeleteFramebuffers(1, &frameBuffer);
-		LOGI("mTextureId: %i", textureID);
-	} else {
-		scene->onDrawFrame();
-	}
+	scene->onDrawFrame();
 }
 
 JNIEXPORT void JNICALL Java_com_cwq_jni_JNILib_onTouch(JNIEnv * env,
 		jclass jthis, jint type, jfloat x, jfloat y) {
-
+	long last, cur;
+	switch (type) {
+		case TOUCH_DOWN:
+			cutRect->touchDown(x, y);
+//			downX = x;
+//			downY = y;
+//			lastx = temp->getCenterX();
+//			lasty = temp->getCenterY();
+//			last = clock();
+//			isIn = temp->isInObject(x, y);
+//			cur = clock();
+//			LOGI("%f s used", ((double)cur - last) / CLOCKS_PER_SEC);
+			break;
+		case TOUCH_MOVE:
+			cutRect->touchMove(x, y);
+//			if (isIn) {
+//				temp->moveTo(lastx + x - downX, lasty + y - downY);
+//			}
+			break;
+		case TOUCH_UP:
+			cutRect->touchUp();
+			break;
+		default:
+			break;
+	}
 }
 
 JNIEXPORT void JNICALL Java_com_cwq_jni_JNILib_clickCut(JNIEnv * env,
 		jclass jthis) {
-	frame->setTextureID(0);
+	RectangleTexture* tempTexture = cutRect->getCutTempTexture();
+	scene->addObj(tempTexture, 25);
+	RectangleTexture* finalTexture = cutRect->getCutFinalTexture();
+	cutRect->doCutAnimation(tempTexture, finalTexture);
+
+	scene->removeObj(backRectTexture);
+	scene->removeObj(upLayer);
+
+	backRectTexture = finalTexture;
+	upLayer = new RectangleTexture(0.0f, 0.0f, backRectTexture->getHalfW() * 2,
+			backRectTexture->getHalfH() * 2, "");
+
+	scene->addObj(upLayer, 20);
+	scene->addObj(backRectTexture, 10);
+	cutRect->setBackRect(backRectTexture, upLayer);
+
+	scene->removeObj(tempTexture);
+	if (tempTexture != NULL) {
+		delete tempTexture;
+		tempTexture = NULL;
+	}
 }
 
 JNIEXPORT void JNICALL Java_com_cwq_jni_JNILib_clickReset(JNIEnv * env,
 		jclass jthis) {
-	isSave = true;
-
+	scene->removeObj(backRectTexture);
+	scene->removeObj(upLayer);
+	backRectTexture = new RectangleTexture("view1.png");
+	upLayer = new RectangleTexture(0.0f, 0.0f, backRectTexture->getHalfW() * 2,
+			backRectTexture->getHalfH() * 2, "");
+	scene->addObj(upLayer, 20);
+	scene->addObj(backRectTexture, 10);
+	cutRect->setBackRect(backRectTexture, upLayer, false);
 }
