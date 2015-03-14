@@ -1,3 +1,7 @@
 jni/test.sln
 jni/test.sdf
 jni/test.opensdf
+obj/
+bin/
+gen/
+libs/
