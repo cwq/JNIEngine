@@ -1,6 +1,12 @@
 #include "Scene.h"
 #include "LogHelper.h"
 
+static double now_ms() {
+	struct timespec res;
+	clock_gettime(CLOCK_REALTIME, &res);
+	return 1000.0*res.tv_sec + (double)res.tv_nsec/1e6;
+}
+
 Scene::Scene() {
 	openglESProgram = new ComOGLESProgram();
 	objects = std::list<BaseObject*>();
@@ -34,7 +40,7 @@ void Scene::onSurfaceCreated() {
 		(*it)->onSurfaceCreated();
 	}
 
-	lastTime = clock();
+	lastTime = now_ms();
 }
 
 void Scene::onSurfaceChanged(int width, int height) {
@@ -45,8 +51,9 @@ void Scene::onDrawFrame() {
 	openglESProgram->onDrawFrame();
 	TextureManager::loadTextures();
 
-	long curTime = clock();
-	double sElapsed = ((double)curTime - lastTime) / CLOCKS_PER_SEC;
+	double curTime = now_ms();
+	//s
+	double sElapsed = (curTime - lastTime) / 1000;
 	lastTime = curTime;
 
 	threadLock->lock();

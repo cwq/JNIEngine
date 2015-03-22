@@ -13,7 +13,7 @@ class Scene
 private:
 	OpenglESProgram* openglESProgram;
 	std::list<BaseObject*> objects;
-	long lastTime;
+	double lastTime; //ms
 
 	ThreadLock* threadLock;
 
